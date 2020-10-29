@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lâmpada</title>
+</head>
+<body>
+    <h1>Intereja com a Lâmpada</h1>
+    <img src="_imagens/lampada-apagada.jpg" alt="lâmpada" id="luz" onmousemove="muda(1)" onmouseout="muda(2)" onclick="muda(3)">
+
+    <script>
+        document.write('<p>Olá, mundo!</p>')
+        document.write('Hoje é ' + Date())
+        var quebrada = false
+        function muda(tipo) {
+            var imagem = document.getElementById('luz')
+            var arquivo
+            if (tipo == 1) {
+                arquivo = "_imagens/lampada-acesa.jpg"
+            }
+            if (tipo == 2) {
+                arquivo = "_imagens/lampada-apagada.jpg"
+            }
+            if (tipo == 3) {
+                arquivo = "_imagens/lampada-quebrada.jpg"
+               }
+            if (! quebrada) {
+                imagem.src = arquivo
+                if (tipo == 3) {
+                    quebrada = true
+                }
+            }    
+        }
+    </script>
+</body>
+</html>

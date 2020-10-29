@@ -1,0 +1,20 @@
+try {
+    const n = 5
+    if(Number.isNaN(n)) {
+        throw 'Não é um número (ex: 0/0)'
+    }
+    if(Math.abs(n) === Infinity) {
+        throw 'divisão por zero'
+    }
+    if(Math.ceil(n) - n !== 0) {
+        throw 'número não é inteiro'
+    }
+    if(n < 1 || n > 60) {
+        throw 'número fora da faixa entre 1 e 60'
+    }
+    console.log(`Número: ${n}`)
+} catch(e) {
+    console.log(`Erro: ${e}`)
+} finally {
+    console.log('Fim!')
+}

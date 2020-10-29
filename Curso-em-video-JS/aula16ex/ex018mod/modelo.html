@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Analisador de Números</title>
+    <link rel="stylesheet" href="estilo.css">
+</head>
+<body>
+    <header>
+        <h1>Analisador de Números</h1>
+    </header>
+    <section>
+        <div>
+            <p>
+                Número (entre 1 e 100):
+                <input type="number" name="núm" id="núm">
+                <input type="button" value="Adicionar" onclick="adicionar()">
+            </p>
+            <p id="p2">
+                <select name="painel" id="painel" size="6"></select>
+                <input type="button" value="Limpar valor" onclick="limpar()" id="limpar">
+                <input type="button" value="Limpar tudo" onclick="limpartudo()" id="limpartudo">
+            </p>
+            <p id="p3">
+                <input type="button" value="Finalizar" onclick="finalizar()">
+            </p>
+        </div>
+        <div id="res">
+            
+        </div>
+    </section>
+    <footer>
+        <p>&copy; Bernardo Braga <br>
+            <a href="https://www.linkedin.com/in/bernardo-martins-braga-51983171/" target="_blank">Linkedin</a> |
+            <a href="http://lattes.cnpq.br/4321217480630520" target="_blank">Lattes</a>
+        </p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>

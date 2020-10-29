@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>País...</title>
+    <style>
+        div#res{
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Em que país você nasceu?</h1>
+    Sua resposta: <input type="text" name="lido" id="lido">
+    <input type="button" value="Verificar" onclick="analisar()">
+    <div id="res">
+        Você é: 
+    </div>
+    
+    <script>
+        function analisar(){
+            campo = window.document.querySelector("input#lido")
+            país = campo.value
+            msg = window.document.querySelector("div#res")
+            if (país == "Brasil"){
+                msg.innerHTML = "Você é <strong>brasileiro</strong>!"
+            } else{
+                msg.innerHTML = "Você é <strong>estrangeiro</strong>!"
+            }
+        }
+    </script>
+</body>
+</html>
