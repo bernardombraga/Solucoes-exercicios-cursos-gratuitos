@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 19 - POO</title>
+</head>
+<body>
+    <h1>Aula 19 - POO em JS</h1>
+    <hr>
+    <div id="resultado"></div>
+
+    <script src="abstracao.js"></script>
+    <script src="pessoa.js"></script>
+    <script src="fornecedor.js"></script>
+    <script src="cliente.js"></script>
+    <script>
+        var p1 = new Pessoa({nome: "Pessoa", telefone: "(31) 12345678", cpf: "MG-12.345.678"})
+        p1.gravarNaMemoria()
+        console.log(Pessoa.dados)
+        var f1 = new Fornecedor({nome: "Fornecedor", telefone: "(31) 87654321", cpf: "MG-87.654.321"})
+        f1.gravarNaMemoria()
+        console.log(Fornecedor.dados)
+        var c1 = new Cliente({nome: "Cliente", telefone: "(31) 12340000", cpf: "MG-12.000.678"})
+        c1.gravarNaMemoria()
+        console.log(Cliente.dados)
+
+    </script>
+</body>
+</html>
