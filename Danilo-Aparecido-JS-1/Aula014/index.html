@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 14 - POO</title>
+</head>
+<body>
+    <h1>Aula 14 - POO em JS</h1>
+    <hr>
+    <div id="resultado"></div>
+
+    <script src="cliente.js"></script>
+    <script>
+        var c1 = new Cliente()
+        c1.nome = "Danilo"
+        c1.telefone = "(31) 12345678"
+        c1.cpf = "MG-12.345.678"
+        c1.gravarNaMemoria()
+        // c1.mostrar()        
+        // window.document.write("<hr>")
+
+        var c2 = new Cliente()
+        c2.nome = "Sheila"
+        c2.telefone = "(31) 87654321"
+        c2.cpf = "MG-87.654.321"
+        c2.gravarNaMemoria()
+        // c2.mostrar()
+        // window.document.write("<hr>")
+
+        Cliente.mostraTodos()
+    </script>
+</body>
+</html>

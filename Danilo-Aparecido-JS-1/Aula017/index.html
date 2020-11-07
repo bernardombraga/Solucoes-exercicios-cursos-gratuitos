@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 17 - POO</title>
+</head>
+<body>
+    <h1>Aula 17 - POO em JS</h1>
+    <hr>
+    <div id="resultado"></div>
+
+    <script src="pessoa.js"></script>
+    <script src="fornecedor.js"></script>
+    <script src="cliente.js"></script>
+    <script>
+        var p1 = new Pessoa({nome: "Danilo", telefone: "(31) 12345678", cpf: "MG-12.345.678"})
+        p1.gravarNaMemoria()
+        var p2 = new Pessoa({nome: "João"})
+        p2.gravarNaMemoria()
+        var p3 = new Pessoa()
+        p3.gravarNaMemoria()
+
+        Pessoa.mostraTodos()
+    </script>
+</body>
+</html>
