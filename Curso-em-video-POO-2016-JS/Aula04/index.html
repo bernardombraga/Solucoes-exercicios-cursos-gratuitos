@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 04 - POO</title>
+    <script src="Canejta.js"></script>
+</head>
+<body>
+    <div id="conteudo"></div>
+
+    <script>
+        divConteudo = window.document.getElementById("conteudo")
+        c1 = new Caneta("BIC", "Azul", 0.5)
+        divConteudo.innerHTML += `Eu tenho uma caneta ${c1.getModelo()} de cor ${c1.getCor()} e ponta ${c1.getPonta()}. <br>`
+        c2 = new Caneta("KKK", "Verde", 1.0)
+        divConteudo.innerHTML += `Eu tenho uma caneta ${c2.getModelo()} de cor ${c2.getCor()} e ponta ${c2.getPonta()}. <br>`
+
+    </script>
+</body>
+</html>
