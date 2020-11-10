@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html class="js-focus-visible" data-js-focus-visible="" lang="en"><head>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <meta charset="utf-8">
+    <title>Classes in JS: Public, Private and Protected - DEV</title>
+      <meta name="last-updated" content="2020-11-09 06:02:27 UTC">
+      <meta name="user-signed-in" content="false">
+        <!-- Experimental web monetization payment pointer for micropayments -->
+        <!-- It lets readers make micropayments to websites they visit. -->
+        <!-- This is step 1: Get live in production to test for platform-wide payment pointer. -->
+        <!-- Step 2: Allow authors to set their payment pointer so they can directly monetize their content based on visitors. -->
+        <!-- Step 3: Enable further functionality based on what we learn from this experimentation and how the ecosystem evolves. -->
+        <meta name="monetization" content="$ilp.uphold.com/24HhrUGG7ekn">
+      <meta name="environment" content="production">
+      
+
+<link rel="stylesheet" media="all" href="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/crayons-007ec0817afd97137b93b30f64f3759a0df8392dd2b84e2f2a58.css">
+<link rel="stylesheet" media="all" href="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/views-55e626d9225e15663e722bd37edaa4dd2da9f54f86a7b503d4731d.css">
+<link rel="stylesheet" media="all" href="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/minimal-c46ee83e16de30817c55a266c827b7580bea019ba5f2127ba8d4.css">
+
+      <style>
+        .home {
+          position: relative;
+          margin: auto;
+          max-width: 1250px;
+        }
+      </style>
+        <script async="" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/analytics.js"></script><script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimeSearch-0404504f6cce3694e905.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/vendor-8a8dc187209d74194878.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/Search-7617dd8cb7b1775d8b2c.js" defer="defer"></script>
+      <script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/base-1af96ccd0930ab883f6dc23ff5c6e86da04b2e97f52bd6e27412167a.js" defer="defer"></script>
+      
+      <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+      <link rel="shortcut icon" type="image/x-icon" href="https://res.cloudinary.com/practicaldev/image/fetch/s--E8ak4Hr1--/c_limit,f_auto,fl_progressive,q_auto,w_32/https://dev-to.s3.us-east-2.amazonaws.com/favicon.ico">
+      <link rel="apple-touch-icon" href="https://res.cloudinary.com/practicaldev/image/fetch/s--gDM0_LTS--/c_limit,f_png,fl_progressive,q_80,w_180/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
+      <link rel="apple-touch-icon" sizes="152x152" href="https://res.cloudinary.com/practicaldev/image/fetch/s--l0c3Kmql--/c_limit,f_png,fl_progressive,q_80,w_152/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
+      <link rel="apple-touch-icon" sizes="180x180" href="https://res.cloudinary.com/practicaldev/image/fetch/s--gDM0_LTS--/c_limit,f_png,fl_progressive,q_80,w_180/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
+      <link rel="apple-touch-icon" sizes="167x167" href="https://res.cloudinary.com/practicaldev/image/fetch/s--2ecYCSjC--/c_limit,f_png,fl_progressive,q_80,w_167/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
+      <link href="https://res.cloudinary.com/practicaldev/image/fetch/s--t7tVouP9--/c_limit,f_png,fl_progressive,q_80,w_192/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png" rel="icon" sizes="192x192">
+      <link href="https://res.cloudinary.com/practicaldev/image/fetch/s--lrmEcD2H--/c_limit,f_png,fl_progressive,q_80,w_128/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png" rel="icon" sizes="128x128">
+      <meta name="apple-mobile-web-app-title" content="dev.to">
+      <meta name="application-name" content="dev.to">
+      <meta property="fb:pages" content="568966383279687">
+      <meta name="theme-color" content="#000000">
+      <link rel="manifest" href="https://dev.to/manifest.json">
+      <link rel="search" href="https://dev.to/open-search.xml" type="application/opensearchdescription+xml" title="DEV Community">
+
+      <meta property="forem:name" content="DEV">
+      <meta property="forem:logo" content="https://res.cloudinary.com/practicaldev/image/fetch/s--PFPhV65b--/c_limit,f_png,fl_progressive,q_80,w_512/https://practicaldev-herokuapp-com.freetls.fastly.net/assets/devlogo-pwa-512.png">
+      <meta property="forem:domain" content="dev.to">
+  <meta id="webpki_lacunasoftware_com"><meta name="csrf-param" content="authenticity_token"><meta name="csrf-token" content="8ym2TfdCiXv+vD/9E4ziyMp9B99DzOjlyk2yupkWELl6t8gLf3dzHkfK6w1pkAY0zgeJLnuaB/UfaRoAd6e6gg=="></head>
+      <body data-user-status="logged-out" class="sans-serif-article-body default-header" data-pusher-key="ef46a9ae106e4241008c" data-app-domain="ZGV2LnRv" data-honeybadger-key="a45862f6" data-release-footprint="af6981229889024e434c3b4d93208e1857cfaf89" data-ga-tracking="UA-71991109-1" data-loaded="true">
+        <div id="body-styles">
+          <style>
+            :root {
+              --accent-brand: #3b49df;
+              --accent-brand-darker: #323ebe;
+              --accent-brand-lighter: #4150f5;
+              --accent-brand-a10: rgba(59, 73, 223, 0.10);
+            }
+          </style>
+        </div>
+        <div id="audiocontent" data-podcast="">
+          
+        </div>
+        <div class="navigation-progress" id="navigation-progress"></div>
+<header class="crayons-header print-hidden" role="banner">
+  <a href="#articles-list" class="skip-content-link">Skip to content</a>
+  <div class="crayons-header__container">
+    <a href="https://dev.to/" class="site-logo" aria-label="DEV Home">
+    <svg width="50" height="40" viewBox="0 0 50 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="40" rx="3" style="fill: currentColor;"></rect><path d="M19.099 23.508c0 1.31-.423 2.388-1.27 3.234-.838.839-1.942 1.258-3.312 1.258h-4.403V12.277h4.492c1.31 0 2.385.423 3.224 1.27.846.838 1.269 1.912 1.269 3.223v6.738zm-2.808 0V16.77c0-.562-.187-.981-.562-1.258-.374-.285-.748-.427-1.122-.427h-1.685v10.107h1.684c.375 0 .75-.138 1.123-.415.375-.285.562-.708.562-1.27zM28.185 28h-5.896c-.562 0-1.03-.187-1.404-.561-.375-.375-.562-.843-.562-1.404V14.243c0-.562.187-1.03.562-1.404.374-.375.842-.562 1.404-.562h5.896v2.808H23.13v3.65h3.088v2.808h-3.088v3.65h5.054V28zm7.12 0c-.936 0-1.684-.655-2.246-1.965l-3.65-13.758h3.089l2.807 10.804 2.808-10.804H41.2l-3.65 13.758C36.99 27.345 36.241 28 35.305 28z" style="fill: var(--base-inverted);"></path></svg>
+</a>
+
+
+    <div id="pwa-nav-buttons" class="pwa-nav-buttons">
+      <button type="button" id="app-back-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 306 306" role="img" aria-labelledby="aijswta3ooiha0wibv3g5mu9rr4f3g54" class="crayons-icon"><title id="aijswta3ooiha0wibv3g5mu9rr4f3g54">Back</title>
+    <path d="M247.35 35.7L211.65 0l-153 153 153 153 35.7-35.7L130.05 153z"></path>
+</svg>
+
+      </button>
+      <button type="button" id="app-forward-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 306 306" role="img" aria-labelledby="a3xrtth3h6ctlgw1zi9a160btiwo9kru" class="crayons-icon"><title id="a3xrtth3h6ctlgw1zi9a160btiwo9kru">Forward</title>
+    <path d="M94.35 0l-35.7 35.7L175.95 153 58.65 270.3l35.7 35.7 153-153z"></path>
+</svg>
+
+      </button>
+      <button type="button" id="app-refresh-button">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 408 408" role="img" aria-labelledby="a1lgiby7vug4ze8lmt9fa7rncj8p5z1t" class="crayons-icon"><title id="a1lgiby7vug4ze8lmt9fa7rncj8p5z1t">Refresh</title>
+    <path d="M346.8 61.2C311.1 22.95 260.1 0 204 0 91.8 0 0 91.8 0 204s91.8 204 204 204c94.35 0 173.4-66.3 196.35-153H346.8c-20.4 58.65-76.5 102-142.8 102-84.15 0-153-68.85-153-153S119.85 51 204 51c43.35 0 79.05 17.85 107.1 45.9l-81.6 81.6H408V0l-61.2 61.2z"></path>
+</svg>
+
+      </button>
+    </div>
+
+    <div class="crayons-header--search" id="header-search"><form method="get" action="/search" accept-charset="UTF-8"><input type="hidden" name="utf8" id="" placeholder="" autocomplete="" value="✓"><input class="crayons-header--search-input crayons-textfield" type="text" name="q" id="nav-search" placeholder="Search..." autocomplete="off" aria-label="search"></form>
+      
+    </div>
+
+    <div class="crayons-header__links">
+        <a href="https://dev.to/enter" class="crayons-btn crayons-btn--ghost-brand hidden mr-2 whitespace-nowrap s:block" data-no-instant="">
+          Log in
+        </a>
+
+        <a href="https://dev.to/enter?state=new-user" class="crayons-btn hidden mr-2 whitespace-nowrap s:block" data-no-instant="">
+          Create account
+        </a>
+      <div class="crayons-header__menu s:hidden desktop" id="crayons-header__menu">
+        <button type="button" class="crayons-header__menu__trigger" id="navigation-butt" aria-label="Navigation menu">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="a66bf7lf518edcrrgktz97mlholdrtt7" class="crayons-icon"><title id="a66bf7lf518edcrrgktz97mlholdrtt7">Navigation menu</title>
+    <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"></path>
+</svg>
+
+        </button>
+        <div class="crayons-dropdown left-2 right-2 s:left-auto p-0 crayons-header__menu__dropdown block">
+    <div class="authentication-header__container border-0 border-b-1 border-solid border-base-20">
+      <figure class="authentication-header__image-container">
+        <img class="authentication-header__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/rainbowdev.webp" alt="Secondary DEV logo">
+      </figure>
+      <div class="authentication-header__content">
+        <h2 class="authentication-header__title">
+          <a href="https://dev.to/">DEV</a> is a community of 500,151 amazing developers
+
+        </h2>
+        <p class="authentication-header__description">
+            We're a place where coders share, stay up-to-date and grow their careers.
+
+        </p>
+        <div class="authentication-header__actions">
+          <a href="https://dev.to/enter?state=new-user" class="crayons-btn" aria-label="Create new account" data-no-instant="">
+  Create new account
+</a>
+<a href="https://dev.to/enter" class="crayons-btn crayons-btn--ghost-brand" aria-label="Log in">
+  Log in
+</a>
+
+        </div>
+      </div>
+    </div>
+    <div class="border-0 border-b-1 border-solid border-base-20 p-1">
+      <a href="https://dev.to/about" class="crayons-link crayons-link--block" id="last-nav-link">
+        About DEV
+      </a>
+      <a href="https://dev.to/p/information" class="crayons-link crayons-link--block" id="last-nav-link">
+        Learn more
+      </a>
+    </div>
+</div>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+        <div id="active-broadcast" class="broadcast-wrapper"></div>
+        <div id="message-notice"></div>
+        <div class="app-shell-loader">
+          loading...
+        </div>
+    <!-- End Top Shell -->
+
+
+  
+    <meta charset="utf-8">
+    <title>Classes in JS: Public, Private and Protected - DEV</title>
+  
+
+  <div id="base-payment-pointer" data-payment-pointer="$ilp.uphold.com/24HhrUGG7ekn"></div>
+<style>.app-shell-loader {display: none;}</style>
+<div id="page-content" class="wrapper stories stories-show" data-current-page="stories-show">
+  <div id="page-content-inner">
+    
+
+
+<style>
+  .html-variant-wrapper { display: none}
+</style>
+
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/webcomponents-loader.js" integrity="sha384-3HK5hxQbkFqOIxMbpROlRmRtYl2LBZ52t+tqcjzsmr9NJuOWQxl8RgQSyFvq2lhy" crossorigin="anonymous" defer="defer"></script>
+
+  <script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimeclipboardCopy-fca68f3ece57b0176f01.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/clipboardCopy-517ce7723117a01d360f.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimewebShare-d4285d32d82efc396ce0.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/webShare-2ec481d2cb952f3f9178.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimearticlePage-c4df12e142d093b86ce8.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/vendor-8a8dc187209d74194878.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/articlePage-1cf71a79fa93dc1d872d.js" defer="defer"></script>
+
+
+  <link rel="canonical" href="https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok">
+  <meta name="description" content="Even though ES6 introduced the class keyword that fairly well mimics classes and allows us to jump in... Tagged with javascript, beginners, codenewbie, webdev.">
+  <meta name="keywords" content="javascript, beginners, codenewbie, webdev, software, coding, development, engineering, inclusive, community">
+
+<div class="crayons-layout crayons-layout--3-cols crayons-layout--article">
+  <aside class="crayons-layout__sidebar-left" aria-label="Article actions">
+    <div class="crayons-article-actions">
+  <div class="crayons-article-actions__inner">
+
+      <button role="checkbox" id="reaction-butt-like" class="crayons-reaction crayons-reaction--like activated" data-category="like" title="Heart">
+  <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="acsyx5lxq8evmlwhueux4xae30pgw6mo" class="crayons-icon"><title id="acsyx5lxq8evmlwhueux4xae30pgw6mo">Heart</title>
+    <path d="M21.179 12.794l.013.014L12 22l-9.192-9.192.013-.014A6.5 6.5 0 0112 3.64a6.5 6.5 0 019.179 9.154zM4.575 5.383a4.5 4.5 0 000 6.364L12 19.172l7.425-7.425a4.5 4.5 0 10-6.364-6.364L8.818 9.626 7.404 8.21l3.162-3.162a4.5 4.5 0 00-5.99.334l-.001.001z"></path>
+</svg>
+
+  </span>
+  <span class="crayons-reaction__icon crayons-reaction__icon--active">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="anxynyssj2wb71iyluwd5qv0ozxk8p7h" class="crayons-icon"><title id="anxynyssj2wb71iyluwd5qv0ozxk8p7h">Heart</title>
+    <path d="M2.821 12.794a6.5 6.5 0 017.413-10.24h-.002L5.99 6.798l1.414 1.414 4.242-4.242a6.5 6.5 0 019.193 9.192L12 22l-9.192-9.192.013-.014z"></path>
+</svg>
+
+  </span>
+  <span class="crayons-reaction__count" id="reaction-number-like" alt="count">10</span>
+</button>
+
+      <button role="checkbox" id="reaction-butt-unicorn" class="crayons-reaction crayons-reaction--unicorn activated" data-category="unicorn" title="Unicorn">
+  <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" aria-labelledby="a70js07o541zfme9mro5m09ozya7o281" class="crayons-icon"><title id="a70js07o541zfme9mro5m09ozya7o281">Unicorn</title>
+    <path d="M5.645 8.013c.013-.265-.261-.323-.4-.183-1.16 1.17-1.822 3.865-.344 7.32.294.961 1.938 3.19.84 6.131l-.003.006c-.094.255.206.404.366.263 1.395-1.226 1.933-3.593 1.1-6.375-.488-1.657-1.955-4.226-1.559-7.162zm-3.22 2.738c.05-.137-.124-.417-.326-.225-.939.893-1.316 2.863-.976 4.605.547 2.878 2.374 3.526 2.066 6.629-.028.102.176.38.348.154 1.546-2.033.409-4.453-.241-6.006-1.005-2.386-1.087-4.118-.871-5.157z" fill="#08090A"></path>
+    <path fill-rule="evenodd" clip-rule="evenodd" d="M13.622 7.223l8.579-3.68c.598-.256 1.087.547.6.985l-6.618 5.941c.881 2.043 2.738 6.34 2.931 6.775 1.348 3.031-2.055 4.918-3.807 3.583a7.027 7.027 0 01-.623-.574c-.974-.965-2.419-2.398-5.207-1.877.284-2.115-.313-3.737-.883-5.288-.38-1.032-.747-2.032-.837-3.124-.346-3.329 3.763-8.23 4.696-7.953.386.115.326 1.229.266 2.319-.051.948-.102 1.88.143 2.12.145.142.428.43.76.773zM11.5 16.5l2.5.5 2.5 2 1-.5-2-4.5-1.5-4-1.5-1-1-1-1-1.5L10 8l-.5 1.5 1 2.5 1 4.5z"></path>
+</svg>
+
+  </span>
+  <span class="crayons-reaction__icon crayons-reaction__icon--active">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="akknhc731mggv8uh12nomwuakqutruhn" class="crayons-icon"><title id="akknhc731mggv8uh12nomwuakqutruhn">Unicorn</title>
+    <path d="M5.645 8.013c.013-.265-.261-.323-.4-.183-1.16 1.17-1.822 3.865-.344 7.32.294.961 1.938 3.19.84 6.131l-.003.006c-.094.255.206.404.366.263 1.395-1.226 1.933-3.593 1.1-6.375-.488-1.657-1.955-4.226-1.559-7.162zm-3.22 2.738c.05-.137-.124-.417-.326-.225-.939.893-1.316 2.863-.976 4.605.547 2.878 2.374 3.526 2.066 6.629-.028.102.176.38.348.154 1.546-2.033.409-4.453-.241-6.006-1.005-2.386-1.087-4.118-.871-5.157zM22.2 3.543l-8.579 3.68c-.332-.343-.615-.63-.76-.773-.527-.517.313-4.224-.409-4.439-.933-.277-5.042 4.624-4.696 7.953.224 2.735 2.193 4.89 1.72 8.412 3.446-.644 4.841 1.697 5.83 2.45 1.752 1.335 5.155-.551 3.807-3.582-.193-.435-2.05-4.732-2.931-6.775l6.619-5.94c.486-.44-.003-1.242-.601-.986zm-9.418 9.535a.828.828 0 01-.74-.9.825.825 0 01.81-.76c.479 0 .85.42.81.903a.824.824 0 01-.88.757z"></path>
+</svg>
+
+  </span>
+  <span class="crayons-reaction__count" id="reaction-number-unicorn" alt="count">2</span>
+</button>
+
+      <button role="checkbox" id="reaction-butt-readinglist" class="crayons-reaction crayons-reaction--readinglist activated" data-category="readinglist" title="Saved">
+  <span class="crayons-reaction__icon crayons-reaction__icon--inactive">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="a2z0ysk1gysqdsffxdu6iiftxdt6vg46" class="crayons-icon"><title id="a2z0ysk1gysqdsffxdu6iiftxdt6vg46">Saved</title>
+    <path d="M5 2h14a1 1 0 011 1v19.143a.5.5 0 01-.766.424L12 18.03l-7.234 4.536A.5.5 0 014 22.143V3a1 1 0 011-1zm13 2H6v15.432l6-3.761 6 3.761V4z"></path>
+</svg>
+
+  </span>
+  <span class="crayons-reaction__icon crayons-reaction__icon--active">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="a2wkkprgj6t9rg88g0dpegsyvtmkcp28" class="crayons-icon"><title id="a2wkkprgj6t9rg88g0dpegsyvtmkcp28">Saved</title>
+    <path d="M5 2h14a1 1 0 011 1v19.143a.5.5 0 01-.766.424L12 18.03l-7.234 4.536A.5.5 0 014 22.143V3a1 1 0 011-1z"></path>
+</svg>
+
+  </span>
+  <span class="crayons-reaction__count" id="reaction-number-readinglist" alt="count">21</span>
+</button>
+
+
+    <div class="align-center m:relative">
+      <button id="article-show-more-button" class="dropbtn crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon-rounded" aria-label="Toggle dropdown menu" has-dropdown-listener="true">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" aria-labelledby="a520qlmgjkh5d5apnau8enr8gfranx32" class="dropdown-icon crayons-icon"><title id="a520qlmgjkh5d5apnau8enr8gfranx32">More...</title><path fill-rule="evenodd" clip-rule="evenodd" d="M7 12a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0zm5 2a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+
+      </button>
+      <div class="crayons-dropdown p-1 right-1 left-1 s:left-auto bottom-100 m:bottom-0 m:right-auto m:left-100 fs-base">
+        <clipboard-copy for="article-copy-link-input" aria-live="polite" aria-controls="article-copy-link-announcer" class="dropdown-link-row">
+          <div class="flex items-center">
+            <input type="text" id="article-copy-link-input" value="https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok" class="crayons-textfield" readonly="readonly">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" id="article-copy-icon" role="img" aria-labelledby="atawn2dfjm3co3jpo0ua88u2irgqfaoi" class="crayons-icon mx-2 shrink-0"><title id="atawn2dfjm3co3jpo0ua88u2irgqfaoi">Notifications</title>
+    <path d="M7 6V3a1 1 0 011-1h12a1 1 0 011 1v14a1 1 0 01-1 1h-3v3c0 .552-.45 1-1.007 1H4.007A1 1 0 013 21l.003-14c0-.552.45-1 1.007-1H7zm2 0h8v10h2V4H9v2zm-2 5v2h6v-2H7zm0 4v2h6v-2H7z"></path>
+</svg>
+
+          </div>
+          <div id="article-copy-link-announcer" role="alert" class="crayons-notice crayons-notice--success my-2 p-1" hidden="">Copied to Clipboard</div>
+        </clipboard-copy>
+        <web-share-wrapper shareurl="https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok" sharetext="Classes in JS: Public, Private and Protected" template="web-share-button">
+          <a target="_blank" class="dropdown-link-row crayons-link crayons-link--block" rel="noopener" href="https://twitter.com/intent/tweet?text=%22Classes%20in%20JS%3A%20Public%2C%20Private%20and%20Protected%22%20by%20@bhagatparwinder%20%23DEVCommunity%20https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok">
+            Share to Twitter
+          </a>
+          <a target="_blank" class="dropdown-link-row crayons-link crayons-link--block" rel="noopener" href="https://www.linkedin.com/shareArticle?mini=true&amp;url=https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok&amp;title=Classes%20in%20JS:%20Public,%20Private%20and%20Protected&amp;summary=Even%20though%20ES6%20introduced%20the%20class%20keyword%20that%20fairly%20well%20mimics%20classes%20and%20allows%20us%20to%20jump%20in...&amp;source=DEV">
+            Share to LinkedIn
+          </a>
+          <a target="_blank" class="dropdown-link-row crayons-link crayons-link--block" rel="noopener" href="https://www.reddit.com/submit?url=https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok&amp;title=Classes%20in%20JS:%20Public,%20Private%20and%20Protected">
+            Share to Reddit
+          </a>
+          <a target="_blank" class="dropdown-link-row crayons-link crayons-link--block" rel="noopener" href="https://news.ycombinator.com/submitlink?u=https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok&amp;t=Classes%20in%20JS:%20Public,%20Private%20and%20Protected">
+            Share to Hacker News
+          </a>
+          <a target="_blank" class="dropdown-link-row crayons-link crayons-link--block" rel="noopener" href="https://www.facebook.com/sharer.php?u=https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok">
+            Share to Facebook
+          </a>
+        </web-share-wrapper>
+        <template id="web-share-button">
+          <a href="#" class="dropdown-link-row crayons-link crayons-link--block">Share Post</a>
+        </template>
+        <a href="https://dev.to/report-abuse" class="dropdown-link-row crayons-link crayons-link--block">Report Abuse</a>
+      </div>
+    </div>
+  </div>
+</div>
+
+      <div class="html-variant-wrapper" id="html-variant-article-show-below-article" data-variant-id="382">
+        <div></div>
+      </div>
+
+  </aside>
+
+  <main class="crayons-layout__content grid gap-4">
+    <div class="article-wrapper">
+
+
+      <article class="crayons-card crayons-article mb-4" id="article-show-container" data-author-id="29240" data-path="/bhagatparwinder/classes-in-js-public-private-and-protected-1lok" data-published="true">
+        <header class="crayons-article__header" id="main-title">
+            <div class="crayons-article__cover">
+              <img src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/smzc0s78a39tw0nt5ndv.webp" style="background-color:#dddddd;" class="crayons-article__cover__image" alt="Cover image for Classes in JS: Public, Private and Protected" width="1000" height="420">
+            </div>
+
+          <div class="crayons-article__header__meta">
+            <h1 class="fs-3xl s:fs-4xl l:fs-5xl fw-bold s:fw-heavy lh-tight mb-4 medium">
+              Classes in JS: Public, Private and Protected
+            </h1>
+
+              <div class="mb-4 spec__tags">
+                  <a class="crayons-tag mr-1" href="https://dev.to/t/javascript" style="background-color:#F7DF1E;color:#000000"><span class="crayons-tag__prefix">#</span>javascript</a>
+                  <a class="crayons-tag mr-1" href="https://dev.to/t/beginners" style="background-color:#008335;color:#FFFFFF"><span class="crayons-tag__prefix">#</span>beginners</a>
+                  <a class="crayons-tag mr-1" href="https://dev.to/t/codenewbie" style="background-color:#57d700;color:#ffffff"><span class="crayons-tag__prefix">#</span>codenewbie</a>
+                  <a class="crayons-tag mr-1" href="https://dev.to/t/webdev" style="background-color:#562765;color:#ffffff"><span class="crayons-tag__prefix">#</span>webdev</a>
+              </div>
+
+            <div class="crayons-article__subheader">
+              <a href="https://dev.to/bhagatparwinder" class="flex items-center mr-4 mb-4 s:mb-0 fw-medium crayons-link">
+                <span class="crayons-avatar crayons-avatar--l mr-2"><img class="crayons-avatar__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/5694b04a-30a0-4dda-a00b-27ce65b44077_002.webp" alt="bhagatparwinder profile image"></span>
+                Parwinder 👨🏻‍💻
+              </a>
+
+              <span class="fs-s mb-4 s:mb-0">
+                  <time datetime="2020-09-05T18:00:12Z" class="date-no-year" title="sábado, 5 de setembro de 2020 15:00:12">5 de set.</time>
+
+
+                <span class="mr-4">・3 min read</span>
+              </span>
+              <span id="action-space" class="mb-4 s:mb-0"></span>
+            </div>
+          </div>
+        </header>
+
+        <div class="crayons-article__main">
+            
+  <nav class="series-switcher crayons-card crayons-card--secondary">
+    <header class="crayons-card__header">
+      <h3 class="crayons-subtitle-2">
+        <a href="https://dev.to/bhagatparwinder/series/7685">JavaScript with Parwinder (59 Part Series)</a>
+      </h3>
+    </header>
+
+    <div class="series-switcher__list">
+
+          <a href="https://dev.to/bhagatparwinder/what-is-javascript-5f33" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xcwG6uAg--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/89pxn2gahtj38p9a7i7i.png" title="Published Jun 21">
+            <span class="series-switcher__num">1</span>
+            <span class="series-switcher__title">What is Javascript?</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/where-can-i-run-javascript-995" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--yYOQOUf0--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/5y8zru8i329hjtwo7q51.png" title="Published Jun 21">
+            <span class="series-switcher__num">2</span>
+            <span class="series-switcher__title">Where can I run JavaScript?</span>
+          </a>
+            <a href="https://dev.to/bhagatparwinder/types-in-javascript-2go1" class="crayons-link crayons-link--contentful series-switcher__link series-switcher__link--active series-switcher__link--inbetween" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--4VWVCn-F--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/3pewzh1hon9eaqvfd8wl.png" id="collection-link-inbetween" data-no-instant="" title="View more">
+              <span class="series-switcher__num">...</span>
+              <span class="series-switcher__title">57 more parts...</span>
+            </a>
+
+          <a href="https://dev.to/bhagatparwinder/types-in-javascript-2go1" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--4VWVCn-F--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/3pewzh1hon9eaqvfd8wl.png" title="Published Jun 22">
+            <span class="series-switcher__num">3</span>
+            <span class="series-switcher__title">Types in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/what-are-objects-in-javascript-19oi" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Ep4tF7ee--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/j7qx4ub1a3wx9ubbsjrp.png" title="Published Jun 24">
+            <span class="series-switcher__num">4</span>
+            <span class="series-switcher__title">What are objects in JavaScript?</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/reference-vs-value-5dbg" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--nLOoTBKb--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/a6qj26wp6o7v0rd57ugw.png" title="Published Jun 24">
+            <span class="series-switcher__num">5</span>
+            <span class="series-switcher__title">Reference vs Value</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrays-in-javascript-5fc7" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--ecqXuOrl--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/paa1q2gjynf1b2uvuxfq.png" title="Published Jun 27">
+            <span class="series-switcher__num">6</span>
+            <span class="series-switcher__title">Arrays in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-methods-in-js-33pe" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Qj3NYue5--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/d5x46d34el7zxrpptaqg.png" title="Published Jun 28">
+            <span class="series-switcher__num">7</span>
+            <span class="series-switcher__title">Array Methods in JS</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-instance-methods-59a2" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--10TSzgEA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/qhxbosh9k96tintdzi9x.png" title="Published Jun 28">
+            <span class="series-switcher__num">8</span>
+            <span class="series-switcher__title">Array Instance Methods</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-instance-methods-ii-d5l" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Mw_Rvdhq--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/26j3hqixbrsrefp6d0wf.png" title="Published Jun 29">
+            <span class="series-switcher__num">9</span>
+            <span class="series-switcher__title">Array Instance Methods II</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/functions-in-javascript-5ehm" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--x2onA_RF--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/otbi8euroxgck0bbq2m4.png" title="Published Jul  6">
+            <span class="series-switcher__num">10</span>
+            <span class="series-switcher__title">Functions in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/type-of-functions-in-javascript-3gjb" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--OwwKhfDA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/4omtnrko8w5aqs61qzxs.png" title="Published Jul  8">
+            <span class="series-switcher__num">11</span>
+            <span class="series-switcher__title">Type of Functions in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/scope-in-javascript-3jim" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xl97PtNw--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lfgmam9if4p3dd8yrtqc.png" title="Published Jul 11">
+            <span class="series-switcher__num">12</span>
+            <span class="series-switcher__title">Scope in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/hoisting-in-javascript-2aj2" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--J-Bcj48U--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/3r4xa1xvftqdsb1insaq.png" title="Published Jul 11">
+            <span class="series-switcher__num">13</span>
+            <span class="series-switcher__title">Hoisting in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/closures-in-javascript-1f6k" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--L2aDtGU3--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/5a58jrp2nx81l67tfe8y.png" title="Published Jul 12">
+            <span class="series-switcher__num">14</span>
+            <span class="series-switcher__title">Closures in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/debugging-in-javascript-console-methods-2de2" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--1hxrNIRC--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/nso9abytdbnolor64ja7.png" title="Published Jul 12">
+            <span class="series-switcher__num">15</span>
+            <span class="series-switcher__title">Debugging in JavaScript: Console Methods</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/the-new-keyword-in-javascript-45jb" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--SVvJmESB--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lk9tqq2t5bldwxwp3u7d.png" title="Published Jul 12">
+            <span class="series-switcher__num">16</span>
+            <span class="series-switcher__title">The new Keyword in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-type-conversion-14eg" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--uy6l14Bh--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ohkn2qdohmr58vbxr03d.png" title="Published Jul 13">
+            <span class="series-switcher__num">17</span>
+            <span class="series-switcher__title">JavaScript: Type Conversion</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-while-loop-1cgj" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--LwUu-NUz--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/th9h0crbwtm3iorwo7ir.png" title="Published Jul 15">
+            <span class="series-switcher__num">18</span>
+            <span class="series-switcher__title">JavaScript: While Loop</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-do-while-loop-47il" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--JImecL99--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/8fein7x809grqm1rgt4p.png" title="Published Jul 16">
+            <span class="series-switcher__num">19</span>
+            <span class="series-switcher__title">JavaScript: Do While Loop</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-for-loop-22n7" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Ttt6FrQa--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/osdvihc9o6t72e4xj2bl.png" title="Published Jul 17">
+            <span class="series-switcher__num">20</span>
+            <span class="series-switcher__title">JavaScript: For Loop</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/lesser-known-javascript-tricks-kjj" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--dH3wkSCl--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/p6v130dledmlm0skqhq9.png" title="Published Jul 18">
+            <span class="series-switcher__num">21</span>
+            <span class="series-switcher__title">Lesser-Known JavaScript Tricks</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/events-event-handling-f28" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--hKWcD-AM--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/annss0wjllh5mq7bua09.png" title="Published Jul 18">
+            <span class="series-switcher__num">22</span>
+            <span class="series-switcher__title">Events &amp; Event Handling</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/event-bubbling-pb3" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lvZFKL9V--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/tdullvnlbld3udli4jef.png" title="Published Jul 19">
+            <span class="series-switcher__num">23</span>
+            <span class="series-switcher__title">Event Bubbling</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/event-capturing-40o" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--t6Od9vUb--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/8d0y5ln7y0wu2voizwz2.png" title="Published Jul 19">
+            <span class="series-switcher__num">24</span>
+            <span class="series-switcher__title">Event Capturing</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/js-switch-statement-explained-101c" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lSy3Jl2J--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/f2wzft550hdtn417wlx0.png" title="Published Jul 19">
+            <span class="series-switcher__num">25</span>
+            <span class="series-switcher__title">JS: Switch Statement Explained</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrow-function-basics-34cm" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xOGV2M3b--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/iydbomevdpb3rswn9wx5.png" title="Published Jul 20">
+            <span class="series-switcher__num">26</span>
+            <span class="series-switcher__title">Arrow Function: Basics</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/this-keyword-in-javascript-2ecp" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xQm9cY-4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ejlum34myd3wrub2ubmr.png" title="Published Jul 20">
+            <span class="series-switcher__num">27</span>
+            <span class="series-switcher__title">this Keyword in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrow-functions-this-keyword-350j" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--J0oTN_ov--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/7g8h536gpzn6fpyd05tv.png" title="Published Jul 21">
+            <span class="series-switcher__num">28</span>
+            <span class="series-switcher__title">Arrow functions &amp; this keyword</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/callback-functions-callback-hell-79n" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--fQLxtDm5--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/bze8m9b4yh76hkmsi8kp.png" title="Published Jul 22">
+            <span class="series-switcher__num">29</span>
+            <span class="series-switcher__title">Callback Functions &amp; Callback Hell</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/strict-mode-in-javascript-4ge4" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--z8BvsYf3--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/wozg6lkp9140gqawno1p.png" title="Published Jul 23">
+            <span class="series-switcher__num">30</span>
+            <span class="series-switcher__title">Strict Mode in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/optional-chaining-1a1f" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lVtOe9AT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/h8muot2otom89blpgjwt.png" title="Published Jul 23">
+            <span class="series-switcher__num">31</span>
+            <span class="series-switcher__title">Optional Chaining</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/timers-intervals-1b10" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xtzAmVEd--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/hdxq7iz174ochyer1tjv.png" title="Published Jul 24">
+            <span class="series-switcher__num">32</span>
+            <span class="series-switcher__title">Timers &amp; Intervals</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrow-function-and-the-new-arguments-super-keyword-2d1l" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--_o9P5RPr--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/yvq8b1qz3afb1xz1wy7e.png" title="Published Aug  2">
+            <span class="series-switcher__num">33</span>
+            <span class="series-switcher__title">Arrow Function and The new, arguments &amp; super Keyword!</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/promises-introduction-5d30" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--QnZMf_PI--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/2httj8tevzqkixa3undb.png" title="Published Aug  3">
+            <span class="series-switcher__num">34</span>
+            <span class="series-switcher__title">Promises: Introduction</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/promises-chaining-error-handling-operators-3ccb" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s---rVQFDHX--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ta9920kf87oc6ihikcz9.png" title="Published Aug  5">
+            <span class="series-switcher__num">35</span>
+            <span class="series-switcher__title">Promises: Chaining, Error Handling &amp; Operators</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/new-promise-methods-allsettled-any-3ii9" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--od9vEoLq--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/p0ln307is8uisob1etdx.png" title="Published Aug  5">
+            <span class="series-switcher__num">36</span>
+            <span class="series-switcher__title">New Promise Methods: allSettled &amp; any</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/async-await-introduction-3col" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--G5krSURT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/r0kfgvj3tgtd9hmtniq2.png" title="Published Aug  6">
+            <span class="series-switcher__num">37</span>
+            <span class="series-switcher__title">Async/Await: Introduction</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/async-await-common-mistakes-536" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--pHA3vbg1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/tj1qqpllrktvcf8wcrdk.png" title="Published Aug  7">
+            <span class="series-switcher__num">38</span>
+            <span class="series-switcher__title">Async/Await: Common Mistakes</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/async-await-error-handling-1kee" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--ZfGLkKMT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/62ijrpboyyszekxytxq3.png" title="Published Aug  8">
+            <span class="series-switcher__num">39</span>
+            <span class="series-switcher__title">Async/Await: Error Handling</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/truly-understand-bind-call-apply-21da" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--FC038r4s--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/jdeuu9kt5ekc706gho1t.png" title="Published Aug  9">
+            <span class="series-switcher__num">40</span>
+            <span class="series-switcher__title">Truly Understand Bind, Call &amp; Apply</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/destructuring-arrays-1dkf" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--t_6uJZd8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/zgdn7xp5e8iha4j9uhnt.png" title="Published Aug 10">
+            <span class="series-switcher__num">41</span>
+            <span class="series-switcher__title">Destructuring Arrays</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/8-features-from-es2020-es11-you-should-know-1n9" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--mCC3vPyC--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/aumdnb1ypodtjzhzynf6.png" title="Published Aug 14">
+            <span class="series-switcher__num">42</span>
+            <span class="series-switcher__title">8 Features From ES2020/ES11 You Should Know!</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/the-empty-statement-in-javascript-3lg7" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--0fOOaNZh--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/t6sz9d15i2te7mahcdiq.png" title="Published Aug 16">
+            <span class="series-switcher__num">43</span>
+            <span class="series-switcher__title">The Empty Statement in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/prototypical-inheritance-3b0p" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--u-y47osb--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/bqzhubxxylqlft6i1g04.png" title="Published Aug 28">
+            <span class="series-switcher__num">44</span>
+            <span class="series-switcher__title">Prototypical Inheritance</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-map-explained-6de" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--0MdAj4k4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/b2153u3xsqx73c6iw9em.png" title="Published Aug 29">
+            <span class="series-switcher__num">45</span>
+            <span class="series-switcher__title">Array Map Explained</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-reduce-1c4f" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lk0ixeT1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/sym4cvc9l798silgvsn1.png" title="Published Aug 29">
+            <span class="series-switcher__num">46</span>
+            <span class="series-switcher__title">Array Reduce</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-filter-explained-l1i" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--U_bzGkO0--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/tahez4pgmcaejud2g9mo.png" title="Published Aug 29">
+            <span class="series-switcher__num">47</span>
+            <span class="series-switcher__title">Array Filter Explained</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-types-symbol-52di" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--kGOWy6iE--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/q5e13a6q20l7w9dgr3gx.png" title="Published Sep  3">
+            <span class="series-switcher__num">48</span>
+            <span class="series-switcher__title">JavaScript Types: Symbol</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/classes-in-javascript-basics-10ip" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--fZY-BTGw--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/wirdmr40z5tr4g4pmnpl.png" title="Published Sep  4">
+            <span class="series-switcher__num">49</span>
+            <span class="series-switcher__title">Classes in JavaScript: Basics</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/classes-not-just-syntactic-sugar-1n0m" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--uZVM5mmY--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/12xszzpbn4rk0j7y1sy8.png" title="Published Sep  4">
+            <span class="series-switcher__num">50</span>
+            <span class="series-switcher__title">Classes, Not Just Syntactic Sugar</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok" class="crayons-link crayons-link--contentful series-switcher__link series-switcher__link--active series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--8MsEsNX6--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/smzc0s78a39tw0nt5ndv.png" title="Published Sep  5">
+            <span class="series-switcher__num">51</span>
+            <span class="series-switcher__title">Classes in JS: Public, Private and Protected</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/class-inheritance-l3l" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--3ZHoRsiA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/o2mrrpgnm1pxtjjpgia1.png" title="Published Sep 10">
+            <span class="series-switcher__num">52</span>
+            <span class="series-switcher__title">Class Inheritance</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/what-are-mixins-2a3p" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Wtk9EeQI--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/sf2sgux33crulafwxa8p.png" title="Published Sep 12">
+            <span class="series-switcher__num">53</span>
+            <span class="series-switcher__title">What are, Mixins?</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/class-static-members-3kl3" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--LYclWp3g--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/9ovbbg0mkcet73qbg4we.png" title="Published Sep 12">
+            <span class="series-switcher__num">54</span>
+            <span class="series-switcher__title">Class: Static Members</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/extending-javascript-built-in-classes-objects-1hm6" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--KEIuKbcy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lxw1l4n7llhupba8ezsk.png" title="Published Sep 13">
+            <span class="series-switcher__num">55</span>
+            <span class="series-switcher__title">Extending JavaScript Built-in Classes/Objects</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/currying-3hh" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--WJUjOb7J--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lurkh4gx2jo4xe87ia6z.png" title="Published Oct  4">
+            <span class="series-switcher__num">56</span>
+            <span class="series-switcher__title">Currying</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/memoization-in-javascript-2ncl" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--vOegh05v--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/jx1zibkyjb7mg1eg11tg.png" title="Published Oct 10">
+            <span class="series-switcher__num">57</span>
+            <span class="series-switcher__title">Memoization in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/polymorphism-in-javascript-1960" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--GabhgYPR--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/xdlcvvkzmubltys3hqjn.png" title="Published Oct 11">
+            <span class="series-switcher__num">58</span>
+            <span class="series-switcher__title">Polymorphism in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/iife-immediately-invoked-function-expressions-49c5" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Mw3ZvSXk--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/6k8468mqxhs57fsj73yo.png" title="Published Oct 17">
+            <span class="series-switcher__num">59</span>
+            <span class="series-switcher__title">IIFE: Immediately Invoked Function Expressions</span>
+          </a>
+    </div>
+  </nav>
+
+
+          <div class="crayons-article__body text-styles spec__body" data-article-id="448103" id="article-body">
+            <p>Even though ES6 introduced the <code>class</code> keyword
+ that fairly well mimics classes and allows us to jump into 
+object-oriented programming, JavaScript is missing the ability to create
+ public, private, and protected members in a class.</p>
+
+<p>If you have worked with any object-oriented language, you must know 
+the importance of internal vs external interface. Internal interface 
+refers to the methods and properties of a class that is only accessible 
+by the class itself and not from outside. In contrast, the external 
+interface has methods and properties that are also accessible from 
+outside the class.</p>
+
+<p>The three major keywords at play are public, protected, and private.</p>
+
+<ol>
+<li>Public: These members of the class and available to everyone that can access the (owner) class instance.</li>
+<li>Private: These members are only accessible within the class that instantiated the object.</li>
+<li>Protected: This keyword allows a little more access than private 
+members but a lot less than the public. A protected member is accessible
+ within the class (similar to private) and any object that inherits from
+ it. A protected value is shared across all layers of the prototype 
+chain. It is not accessible by anybody else.</li>
+</ol>
+
+<p><strong>The protected keyword is the hardest keyword of the three to imitate in JavaScript.</strong></p>
+
+<h3>
+  <a name="public" href="#public" class="anchor">
+  </a>
+  Public
+</h3>
+
+<p>This is the default nature of JavaScript. If something has access to an object, it does have access to its members. Example:<br>
+</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="na">name</span><span class="p">:</span> <span class="dl">"</span><span class="s2">Parwinder</span><span class="dl">"</span><span class="p">,</span>
+    <span class="na">sayMyName</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Parwinder</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">sayMyName</span><span class="p">());</span> <span class="c1">// Parwinder</span>
+</code></pre></div>
+
+
+
+<p>In the above example, I can access the property and method without any issue. If you would rather prefer it in a class syntax:<br>
+</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">class</span> <span class="nx">ObjectCreator</span> <span class="p">{</span>
+    <span class="nx">name</span><span class="p">;</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">sayMyName</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ObjectCreator</span><span class="p">(</span><span class="dl">"</span><span class="s2">Parwinder</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span> <span class="c1">// Parwinder</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">sayMyName</span><span class="p">());</span> <span class="c1">// Parwinder</span>
+</code></pre></div>
+
+
+
+<h3>
+  <a name="private" href="#private" class="anchor">
+  </a>
+  Private
+</h3>
+
+<p>There are multiple ways of creating private variables in JavaScript. First is closures.<br>
+</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">carMonitor</span><span class="p">()</span> <span class="p">{</span>
+    <span class="kd">var</span> <span class="nx">speed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+
+    <span class="k">return</span> <span class="p">{</span>
+        <span class="na">accelerate</span><span class="p">:</span> <span class="kd">function</span> <span class="p">()</span> <span class="p">{</span>
+            <span class="k">return</span> <span class="nx">speed</span><span class="o">++</span><span class="p">;</span>
+        <span class="p">}</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">var</span> <span class="nx">car</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">carMonitor</span><span class="p">();</span>
+<span class="kd">var</span> <span class="nx">redCar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">carMonitor</span><span class="p">()</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">car</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">());</span> <span class="c1">// 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">car</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redCar</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">());</span> <span class="c1">// 0</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redCar</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">());</span> <span class="c1">// 1</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">car</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">());</span> <span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">redCar</span><span class="p">.</span><span class="nx">accelerate</span><span class="p">());</span> <span class="c1">// 2</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">speed</span><span class="p">);</span> <span class="c1">// speed is not defined</span>
+</code></pre></div>
+
+
+
+<p><code>car</code> and <code>redCar</code> maintain their own private <code>speed</code> variables, and <code>speed</code>
+ is not accessible outside. We are enforcing the consumer to use the 
+methods defined on the function or class rather than accessing the 
+properties directly (which they should not). This is how you would 
+encapsulate your code.</p>
+
+<p>The second way is by using the <code>#</code> notation.<br>
+</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">class</span> <span class="nx">ObjectCreator</span> <span class="p">{</span>
+    <span class="err">#</span><span class="nx">meaningOfLife</span><span class="p">;</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">meaningOfLife</span> <span class="o">=</span> <span class="mi">42</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="nx">returnMeaningOfLife</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="err">#</span><span class="nx">meaningOfLife</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="err">#</span><span class="nx">returnAMessage</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="dl">"</span><span class="s2">You will do great things in life</span><span class="dl">"</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">const</span> <span class="nx">myObject</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">ObjectCreator</span><span class="p">(</span><span class="dl">"</span><span class="s2">Parwinder</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="nx">returnMeaningOfLife</span><span class="p">());</span> <span class="c1">// 42</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">[</span><span class="dl">"</span><span class="s2">#meaningOfLife</span><span class="dl">"</span><span class="p">]);</span> <span class="c1">// undefined</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="err">#</span><span class="nx">meaningOfLife</span><span class="p">);</span> <span class="c1">// SyntaxError</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">myObject</span><span class="p">.</span><span class="err">#</span><span class="nx">returnAMessage</span><span class="p">);</span> <span class="c1">// SyntaxError</span>
+</code></pre></div>
+
+
+
+<p>The language enforces encapsulation. It is a syntax error to refer to <code>#</code>
+ names from out of scope. Public and private fields do not conflict. We 
+can have both private #meaningOfLife and public meaningOfLife fields in 
+the same class.</p>
+
+<p>🚨 The <code>#</code> method for declaring private members of a class is in part of ES2019/ES10.</p>
+
+<h3>
+  <a name="protected" href="#protected" class="anchor">
+  </a>
+  Protected
+</h3>
+
+<p>Like I said at the beginning of this post, protected is the hardest 
+of all 3 to implement in JavaScript. The only way that I can think of 
+doing this is by using a class that has a getter for a property without a
+ setter. The property will be read-only, and any object will inherit it 
+from the class, but it will only be change-able from within the class 
+itself.</p>
+
+<p>🙏 If you have an example of creating protected members of the class (or as close to protected as we can get), please do share!<br>
+</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">class</span> <span class="nx">NameGenerator</span> <span class="p">{</span>
+    <span class="nx">_name</span><span class="p">;</span>
+
+    <span class="kd">constructor</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">this</span><span class="p">.</span><span class="nx">_name</span> <span class="o">=</span> <span class="nx">name</span><span class="p">;</span>
+    <span class="p">}</span>
+
+    <span class="kd">get</span> <span class="nx">name</span><span class="p">()</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">_name</span><span class="p">;</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+
+<span class="kd">let</span> <span class="nx">nameGenerator</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">NameGenerator</span><span class="p">(</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">);</span>
+<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">`My name is </span><span class="p">${</span><span class="nx">nameGenerator</span><span class="p">.</span><span class="nx">name</span><span class="p">}</span><span class="s2">`</span><span class="p">);</span> <span class="c1">// My name is John</span>
+<span class="nx">nameGenerator</span><span class="p">.</span><span class="nx">name</span> <span class="o">=</span> <span class="dl">"</span><span class="s2">Jane</span><span class="dl">"</span><span class="p">;</span> <span class="c1">// Cannot assign to 'name' because it is a read-only property.</span>
+</code></pre></div>
+
+
+
+
+          </div>
+
+            
+  <nav class="series-switcher crayons-card crayons-card--secondary">
+    <header class="crayons-card__header">
+      <h3 class="crayons-subtitle-2">
+        <a href="https://dev.to/bhagatparwinder/series/7685">JavaScript with Parwinder (59 Part Series)</a>
+      </h3>
+    </header>
+
+    <div class="series-switcher__list">
+
+          <a href="https://dev.to/bhagatparwinder/what-is-javascript-5f33" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xcwG6uAg--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/89pxn2gahtj38p9a7i7i.png" title="Published Jun 21">
+            <span class="series-switcher__num">1</span>
+            <span class="series-switcher__title">What is Javascript?</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/where-can-i-run-javascript-995" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--yYOQOUf0--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/5y8zru8i329hjtwo7q51.png" title="Published Jun 21">
+            <span class="series-switcher__num">2</span>
+            <span class="series-switcher__title">Where can I run JavaScript?</span>
+          </a>
+            <a href="https://dev.to/bhagatparwinder/types-in-javascript-2go1" class="crayons-link crayons-link--contentful series-switcher__link series-switcher__link--active series-switcher__link--inbetween" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--4VWVCn-F--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/3pewzh1hon9eaqvfd8wl.png" id="collection-link-inbetween" data-no-instant="" title="View more">
+              <span class="series-switcher__num">...</span>
+              <span class="series-switcher__title">57 more parts...</span>
+            </a>
+
+          <a href="https://dev.to/bhagatparwinder/types-in-javascript-2go1" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--4VWVCn-F--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/3pewzh1hon9eaqvfd8wl.png" title="Published Jun 22">
+            <span class="series-switcher__num">3</span>
+            <span class="series-switcher__title">Types in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/what-are-objects-in-javascript-19oi" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Ep4tF7ee--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/j7qx4ub1a3wx9ubbsjrp.png" title="Published Jun 24">
+            <span class="series-switcher__num">4</span>
+            <span class="series-switcher__title">What are objects in JavaScript?</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/reference-vs-value-5dbg" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--nLOoTBKb--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/a6qj26wp6o7v0rd57ugw.png" title="Published Jun 24">
+            <span class="series-switcher__num">5</span>
+            <span class="series-switcher__title">Reference vs Value</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrays-in-javascript-5fc7" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--ecqXuOrl--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/paa1q2gjynf1b2uvuxfq.png" title="Published Jun 27">
+            <span class="series-switcher__num">6</span>
+            <span class="series-switcher__title">Arrays in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-methods-in-js-33pe" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Qj3NYue5--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/d5x46d34el7zxrpptaqg.png" title="Published Jun 28">
+            <span class="series-switcher__num">7</span>
+            <span class="series-switcher__title">Array Methods in JS</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-instance-methods-59a2" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--10TSzgEA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/qhxbosh9k96tintdzi9x.png" title="Published Jun 28">
+            <span class="series-switcher__num">8</span>
+            <span class="series-switcher__title">Array Instance Methods</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-instance-methods-ii-d5l" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Mw_Rvdhq--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/26j3hqixbrsrefp6d0wf.png" title="Published Jun 29">
+            <span class="series-switcher__num">9</span>
+            <span class="series-switcher__title">Array Instance Methods II</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/functions-in-javascript-5ehm" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--x2onA_RF--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/otbi8euroxgck0bbq2m4.png" title="Published Jul  6">
+            <span class="series-switcher__num">10</span>
+            <span class="series-switcher__title">Functions in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/type-of-functions-in-javascript-3gjb" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--OwwKhfDA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/4omtnrko8w5aqs61qzxs.png" title="Published Jul  8">
+            <span class="series-switcher__num">11</span>
+            <span class="series-switcher__title">Type of Functions in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/scope-in-javascript-3jim" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xl97PtNw--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lfgmam9if4p3dd8yrtqc.png" title="Published Jul 11">
+            <span class="series-switcher__num">12</span>
+            <span class="series-switcher__title">Scope in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/hoisting-in-javascript-2aj2" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--J-Bcj48U--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/3r4xa1xvftqdsb1insaq.png" title="Published Jul 11">
+            <span class="series-switcher__num">13</span>
+            <span class="series-switcher__title">Hoisting in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/closures-in-javascript-1f6k" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--L2aDtGU3--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/5a58jrp2nx81l67tfe8y.png" title="Published Jul 12">
+            <span class="series-switcher__num">14</span>
+            <span class="series-switcher__title">Closures in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/debugging-in-javascript-console-methods-2de2" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--1hxrNIRC--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/nso9abytdbnolor64ja7.png" title="Published Jul 12">
+            <span class="series-switcher__num">15</span>
+            <span class="series-switcher__title">Debugging in JavaScript: Console Methods</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/the-new-keyword-in-javascript-45jb" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--SVvJmESB--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lk9tqq2t5bldwxwp3u7d.png" title="Published Jul 12">
+            <span class="series-switcher__num">16</span>
+            <span class="series-switcher__title">The new Keyword in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-type-conversion-14eg" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--uy6l14Bh--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ohkn2qdohmr58vbxr03d.png" title="Published Jul 13">
+            <span class="series-switcher__num">17</span>
+            <span class="series-switcher__title">JavaScript: Type Conversion</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-while-loop-1cgj" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--LwUu-NUz--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/th9h0crbwtm3iorwo7ir.png" title="Published Jul 15">
+            <span class="series-switcher__num">18</span>
+            <span class="series-switcher__title">JavaScript: While Loop</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-do-while-loop-47il" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--JImecL99--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/8fein7x809grqm1rgt4p.png" title="Published Jul 16">
+            <span class="series-switcher__num">19</span>
+            <span class="series-switcher__title">JavaScript: Do While Loop</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-for-loop-22n7" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Ttt6FrQa--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/osdvihc9o6t72e4xj2bl.png" title="Published Jul 17">
+            <span class="series-switcher__num">20</span>
+            <span class="series-switcher__title">JavaScript: For Loop</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/lesser-known-javascript-tricks-kjj" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--dH3wkSCl--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/p6v130dledmlm0skqhq9.png" title="Published Jul 18">
+            <span class="series-switcher__num">21</span>
+            <span class="series-switcher__title">Lesser-Known JavaScript Tricks</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/events-event-handling-f28" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--hKWcD-AM--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/annss0wjllh5mq7bua09.png" title="Published Jul 18">
+            <span class="series-switcher__num">22</span>
+            <span class="series-switcher__title">Events &amp; Event Handling</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/event-bubbling-pb3" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lvZFKL9V--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/tdullvnlbld3udli4jef.png" title="Published Jul 19">
+            <span class="series-switcher__num">23</span>
+            <span class="series-switcher__title">Event Bubbling</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/event-capturing-40o" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--t6Od9vUb--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/8d0y5ln7y0wu2voizwz2.png" title="Published Jul 19">
+            <span class="series-switcher__num">24</span>
+            <span class="series-switcher__title">Event Capturing</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/js-switch-statement-explained-101c" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lSy3Jl2J--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/f2wzft550hdtn417wlx0.png" title="Published Jul 19">
+            <span class="series-switcher__num">25</span>
+            <span class="series-switcher__title">JS: Switch Statement Explained</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrow-function-basics-34cm" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xOGV2M3b--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/iydbomevdpb3rswn9wx5.png" title="Published Jul 20">
+            <span class="series-switcher__num">26</span>
+            <span class="series-switcher__title">Arrow Function: Basics</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/this-keyword-in-javascript-2ecp" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xQm9cY-4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ejlum34myd3wrub2ubmr.png" title="Published Jul 20">
+            <span class="series-switcher__num">27</span>
+            <span class="series-switcher__title">this Keyword in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrow-functions-this-keyword-350j" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--J0oTN_ov--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/7g8h536gpzn6fpyd05tv.png" title="Published Jul 21">
+            <span class="series-switcher__num">28</span>
+            <span class="series-switcher__title">Arrow functions &amp; this keyword</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/callback-functions-callback-hell-79n" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--fQLxtDm5--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/bze8m9b4yh76hkmsi8kp.png" title="Published Jul 22">
+            <span class="series-switcher__num">29</span>
+            <span class="series-switcher__title">Callback Functions &amp; Callback Hell</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/strict-mode-in-javascript-4ge4" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--z8BvsYf3--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/wozg6lkp9140gqawno1p.png" title="Published Jul 23">
+            <span class="series-switcher__num">30</span>
+            <span class="series-switcher__title">Strict Mode in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/optional-chaining-1a1f" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lVtOe9AT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/h8muot2otom89blpgjwt.png" title="Published Jul 23">
+            <span class="series-switcher__num">31</span>
+            <span class="series-switcher__title">Optional Chaining</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/timers-intervals-1b10" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--xtzAmVEd--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/hdxq7iz174ochyer1tjv.png" title="Published Jul 24">
+            <span class="series-switcher__num">32</span>
+            <span class="series-switcher__title">Timers &amp; Intervals</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/arrow-function-and-the-new-arguments-super-keyword-2d1l" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--_o9P5RPr--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/yvq8b1qz3afb1xz1wy7e.png" title="Published Aug  2">
+            <span class="series-switcher__num">33</span>
+            <span class="series-switcher__title">Arrow Function and The new, arguments &amp; super Keyword!</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/promises-introduction-5d30" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--QnZMf_PI--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/2httj8tevzqkixa3undb.png" title="Published Aug  3">
+            <span class="series-switcher__num">34</span>
+            <span class="series-switcher__title">Promises: Introduction</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/promises-chaining-error-handling-operators-3ccb" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s---rVQFDHX--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/ta9920kf87oc6ihikcz9.png" title="Published Aug  5">
+            <span class="series-switcher__num">35</span>
+            <span class="series-switcher__title">Promises: Chaining, Error Handling &amp; Operators</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/new-promise-methods-allsettled-any-3ii9" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--od9vEoLq--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/p0ln307is8uisob1etdx.png" title="Published Aug  5">
+            <span class="series-switcher__num">36</span>
+            <span class="series-switcher__title">New Promise Methods: allSettled &amp; any</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/async-await-introduction-3col" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--G5krSURT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/r0kfgvj3tgtd9hmtniq2.png" title="Published Aug  6">
+            <span class="series-switcher__num">37</span>
+            <span class="series-switcher__title">Async/Await: Introduction</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/async-await-common-mistakes-536" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--pHA3vbg1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/tj1qqpllrktvcf8wcrdk.png" title="Published Aug  7">
+            <span class="series-switcher__num">38</span>
+            <span class="series-switcher__title">Async/Await: Common Mistakes</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/async-await-error-handling-1kee" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--ZfGLkKMT--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/62ijrpboyyszekxytxq3.png" title="Published Aug  8">
+            <span class="series-switcher__num">39</span>
+            <span class="series-switcher__title">Async/Await: Error Handling</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/truly-understand-bind-call-apply-21da" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--FC038r4s--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/jdeuu9kt5ekc706gho1t.png" title="Published Aug  9">
+            <span class="series-switcher__num">40</span>
+            <span class="series-switcher__title">Truly Understand Bind, Call &amp; Apply</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/destructuring-arrays-1dkf" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--t_6uJZd8--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/zgdn7xp5e8iha4j9uhnt.png" title="Published Aug 10">
+            <span class="series-switcher__num">41</span>
+            <span class="series-switcher__title">Destructuring Arrays</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/8-features-from-es2020-es11-you-should-know-1n9" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--mCC3vPyC--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/aumdnb1ypodtjzhzynf6.png" title="Published Aug 14">
+            <span class="series-switcher__num">42</span>
+            <span class="series-switcher__title">8 Features From ES2020/ES11 You Should Know!</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/the-empty-statement-in-javascript-3lg7" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--0fOOaNZh--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/t6sz9d15i2te7mahcdiq.png" title="Published Aug 16">
+            <span class="series-switcher__num">43</span>
+            <span class="series-switcher__title">The Empty Statement in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/prototypical-inheritance-3b0p" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--u-y47osb--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/bqzhubxxylqlft6i1g04.png" title="Published Aug 28">
+            <span class="series-switcher__num">44</span>
+            <span class="series-switcher__title">Prototypical Inheritance</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-map-explained-6de" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--0MdAj4k4--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/b2153u3xsqx73c6iw9em.png" title="Published Aug 29">
+            <span class="series-switcher__num">45</span>
+            <span class="series-switcher__title">Array Map Explained</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-reduce-1c4f" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--lk0ixeT1--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/sym4cvc9l798silgvsn1.png" title="Published Aug 29">
+            <span class="series-switcher__num">46</span>
+            <span class="series-switcher__title">Array Reduce</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/array-filter-explained-l1i" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--U_bzGkO0--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/tahez4pgmcaejud2g9mo.png" title="Published Aug 29">
+            <span class="series-switcher__num">47</span>
+            <span class="series-switcher__title">Array Filter Explained</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/javascript-types-symbol-52di" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--kGOWy6iE--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/q5e13a6q20l7w9dgr3gx.png" title="Published Sep  3">
+            <span class="series-switcher__num">48</span>
+            <span class="series-switcher__title">JavaScript Types: Symbol</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/classes-in-javascript-basics-10ip" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--fZY-BTGw--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/wirdmr40z5tr4g4pmnpl.png" title="Published Sep  4">
+            <span class="series-switcher__num">49</span>
+            <span class="series-switcher__title">Classes in JavaScript: Basics</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/classes-not-just-syntactic-sugar-1n0m" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--uZVM5mmY--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/12xszzpbn4rk0j7y1sy8.png" title="Published Sep  4">
+            <span class="series-switcher__num">50</span>
+            <span class="series-switcher__title">Classes, Not Just Syntactic Sugar</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/classes-in-js-public-private-and-protected-1lok" class="crayons-link crayons-link--contentful series-switcher__link series-switcher__link--active series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--8MsEsNX6--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/smzc0s78a39tw0nt5ndv.png" title="Published Sep  5">
+            <span class="series-switcher__num">51</span>
+            <span class="series-switcher__title">Classes in JS: Public, Private and Protected</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/class-inheritance-l3l" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--3ZHoRsiA--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/o2mrrpgnm1pxtjjpgia1.png" title="Published Sep 10">
+            <span class="series-switcher__num">52</span>
+            <span class="series-switcher__title">Class Inheritance</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/what-are-mixins-2a3p" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Wtk9EeQI--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/sf2sgux33crulafwxa8p.png" title="Published Sep 12">
+            <span class="series-switcher__num">53</span>
+            <span class="series-switcher__title">What are, Mixins?</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/class-static-members-3kl3" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--LYclWp3g--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/9ovbbg0mkcet73qbg4we.png" title="Published Sep 12">
+            <span class="series-switcher__num">54</span>
+            <span class="series-switcher__title">Class: Static Members</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/extending-javascript-built-in-classes-objects-1hm6" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--KEIuKbcy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lxw1l4n7llhupba8ezsk.png" title="Published Sep 13">
+            <span class="series-switcher__num">55</span>
+            <span class="series-switcher__title">Extending JavaScript Built-in Classes/Objects</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/currying-3hh" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--WJUjOb7J--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/lurkh4gx2jo4xe87ia6z.png" title="Published Oct  4">
+            <span class="series-switcher__num">56</span>
+            <span class="series-switcher__title">Currying</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/memoization-in-javascript-2ncl" class="crayons-link crayons-link--contentful series-switcher__link  series-switcher__link--hidden" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--vOegh05v--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/jx1zibkyjb7mg1eg11tg.png" title="Published Oct 10">
+            <span class="series-switcher__num">57</span>
+            <span class="series-switcher__title">Memoization in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/polymorphism-in-javascript-1960" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--GabhgYPR--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/xdlcvvkzmubltys3hqjn.png" title="Published Oct 11">
+            <span class="series-switcher__num">58</span>
+            <span class="series-switcher__title">Polymorphism in JavaScript</span>
+          </a>
+
+          <a href="https://dev.to/bhagatparwinder/iife-immediately-invoked-function-expressions-49c5" class="crayons-link crayons-link--contentful series-switcher__link  " data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--Mw3ZvSXk--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/6k8468mqxhs57fsj73yo.png" title="Published Oct 17">
+            <span class="series-switcher__num">59</span>
+            <span class="series-switcher__title">IIFE: Immediately Invoked Function Expressions</span>
+          </a>
+    </div>
+  </nav>
+
+        </div>
+          <section id="comments" data-updated-at="2020-11-09 02:38:39 UTC" class="text-padding mb-4 border-t-1 border-0 border-solid border-base-10">
+      <header class="relative flex justify-between items-center mb-4">
+        <h3 class="crayons-title">Discussion</h3>
+        <div id="comment-subscription">
+          <div role="presentation" class="crayons-btn-group">
+            <span class="crayons-btn crayons-btn--outlined">Subscribe</span>
+          </div>
+        </div>
+      </header>
+      <div class="comments-container" id="comments-container" data-commentable-id="448103" data-commentable-type="Article">
+        <div id="response-templates-data"></div>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimevalidateFileInputs-27f454ed74f27d85f57b.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/validateFileInputs-2497ea436d88d2ad394b.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimeresponseTemplates-4061931ff618b097125a.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/responseTemplates-f69a81b9ccb0e265f641.js" defer="defer"></script>
+
+
+<form class="comment-form" id="new_comment" action="/comments" accept-charset="UTF-8" method="post"><input name="utf8" type="hidden" value="✓">
+
+  <input type="hidden" name="authenticity_token" value="NOTHING" id="new_comment_authenticity_token">
+
+    <input value="448103" type="hidden" name="comment[commentable_id]" id="comment_commentable_id">
+    <input value="Article" type="hidden" name="comment[commentable_type]" id="comment_commentable_type">
+    
+
+  <span class="crayons-avatar crayons-avatar--l mr-2 shrink-0">
+    <img src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/devlogo-pwa-512.webp" alt="pic" class="crayons-avatar__image" id="comment-primary-user-profile--avatar" width="32" height="32">
+  </span>
+  <div class="comment-form__inner">
+    <div class="comment-form__field">
+      <textarea placeholder="Add to the discussion" onfocus="handleFocus(event)" onkeyup="handleKeyUp(event)" onkeydown="handleKeyDown(event)" oninput="handleChange(event)" id="text-area" required="required" class="crayons-textfield comment-textarea crayons-textfield--ghost" aria-label="Add a comment to the discussion" name="comment[body_markdown]"></textarea>
+      <div class="comment-form__toolbar">
+        <div class="editor-image-upload">
+          <input type="file" id="image-upload-main" name="file" accept="image/*" style="display:none">
+          <button type="button" class="crayons-btn crayons-btn--s crayons-btn--icon-left crayons-btn--ghost-dimmed" onclick="handleImageUpload(event,'main')">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="a1ul49n6umld2fuefp60kxiaaut7cght" class="crayons-icon"><title id="a1ul49n6umld2fuefp60kxiaaut7cght">Image</title>
+    <path d="M20 5H4v14l9.292-9.294a1 1 0 011.414 0L20 15.01V5zM2 3.993A1 1 0 012.992 3h18.016c.548 0 .992.445.992.993v16.014a1 1 0 01-.992.993H2.992A.993.993 0 012 20.007V3.993zM8 11a2 2 0 110-4 2 2 0 010 4z"></path>
+</svg>
+
+            <span class="hidden s:inline-block">Upload image</span>
+          </button>
+          <label class="image-upload-file-label" id="image-upload-file-label-main"></label>
+          <input type="submit" id="image-upload-submit-main" value="Upload" style="display:none">
+          <input class="hidden" id="uploaded-image-main">
+        </div>
+
+        <button type="button" class="crayons-btn crayons-btn--s crayons-btn--icon-left crayons-btn--ghost-dimmed response-templates-button" title="Use a response template" data-has-listener="true" data-form-id="new_comment">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="aapzrt8azb3pmgqjy4qoks9yxvr3x1pp" class="crayons-icon"><title id="aapzrt8azb3pmgqjy4qoks9yxvr3x1pp">Templates</title>
+    <path d="M3 18.5V5a3 3 0 013-3h14a1 1 0 011 1v18a1 1 0 01-1 1H6.5A3.5 3.5 0 013 18.5zM19 20v-3H6.5a1.5 1.5 0 100 3H19zM10 4H6a1 1 0 00-1 1v10.337A3.485 3.485 0 016.5 15H19V4h-2v8l-3.5-2-3.5 2V4z"></path>
+</svg>
+
+          <span class="hidden s:inline-block">Templates</span>
+        </button>
+
+        <a href="https://dev.to/p/editor_guide" class="crayons-btn crayons-btn--ghost-dimmed crayons-btn--icon crayons-btn--s ml-auto" target="_blank" rel="noopener" title="Markdown Guide">
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="24" height="24" role="img" aria-labelledby="ajedhtjriqkn2bwl9wv0eymxtumtzl4r" class="crayons-icon"><title id="ajedhtjriqkn2bwl9wv0eymxtumtzl4r">Editor guide</title>
+    <path d="M12 22C6.477 22 2 17.523 2 12S6.477 2 12 2s10 4.477 10 10-4.477 10-10 10zm0-2a8 8 0 100-16 8 8 0 000 16zM11 7h2v2h-2V7zm0 4h2v6h-2v-6z"></path>
+</svg>
+
+        </a>
+      </div>
+    </div>
+
+    <div class="response-templates-container crayons-card crayons-card--secondary p-4 mb-4 comment-form__templates fs-base hidden">
+      <header>
+        <button type="button" class="personal-template-button active" data-target-type="personal" data-form-id="new_comment">Personal</button>
+        <button type="button" class="moderator-template-button hidden" data-target-type="moderator" data-form-id="new_comment">Moderator</button>
+      </header>
+
+      <img class="loading-img hidden" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/loading-ellipsis-b714cf681fd66c853ff6f03dd161b77aa3c80e03cdc.svg" alt="loading">
+
+      <div class="personal-responses-container">
+      </div>
+      <div class="moderator-responses-container hidden">
+      </div>
+
+      <a target="_blank" rel="noopener nofollow" href="https://dev.to/settings/response-templates">
+        Create template
+      </a>
+      <p>Templates let you quickly answer FAQs or store snippets for re-use.</p>
+    </div>
+
+    <div class="comment-form__preview text-styles text-styles--secondary" id="preview-div"></div>
+
+    <div class="comment-form__buttons mb-4">
+      <button type="submit" class="crayons-btn mr-2 js-btn-enable" onclick="validateField(event)" disabled="disabled">Submit</button>
+      <button type="button" class="preview-toggle crayons-btn crayons-btn--secondary comment-action-preview js-btn-enable mr-2" disabled="disabled">Preview</button>
+      <a href="https://dev.to/404.html" class="crayons-btn crayons-btn--ghost js-btn-dismiss hidden">Dismiss</a>
+    </div>
+  </div>
+
+  <div class="code-of-conduct" id="toggle-code-of-conduct-checkbox"></div>
+</form>
+
+        <div class="comment-trees" id="comment-trees-container">
+                    <details open="">
+      <summary><span>&nbsp;</span></summary>
+      <div class="comment-hash-marker" id="14el8"></div>
+<div id="comment-node-537298" class="single-comment-node root  comment-deep-0" data-comment-id="537298" data-comment-author-id="430316" data-content-user-id="430316">
+    <div class="inner-comment">
+
+
+      <div class="details ">
+        <a href="https://dev.to/shadowtime2000">
+          <img class="profile-pic" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/5da29c22-cc09-4e07-9494-1e003016d647.webp" alt="shadowtime2000 profile image">
+          <span class="comment-username">
+            <span class="comment-username-inner">
+              shadowtime2000
+            </span>
+          </span>
+        </a>
+          <a href="https://github.com/shadowtime2000" rel="noopener noreferrer" target="_blank">
+            <img class="icon-img" alt="github logo" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/github-logo-ba8488d21cd8ee1fee097b8410db9deaa41d0ca30b004c0c.svg">
+          </a>
+        <div class="comment-date">
+  <a href="https://dev.to/shadowtime2000/comment/14el8">
+    <time datetime="2020-09-05T18:50:49Z" title="sábado, 5 de setembro de 2020 15:50:49">
+      Sep  5
+    </time>
+  </a>
+</div>
+
+        <button class="dropbtn" aria-label="Toggle dropdown menu" has-dropdown-listener="true">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" role="img" aria-labelledby="aigf4s7j6eqh2o57r80dpszjlactr3ip" class="dropdown-icon"><title id="aigf4s7j6eqh2o57r80dpszjlactr3ip">Dropdown menu</title><path fill-rule="evenodd" clip-rule="evenodd" d="M7 12a2 2 0 11-4 0 2 2 0 014 0zm7 0a2 2 0 11-4 0 2 2 0 014 0zm5 2a2 2 0 100-4 2 2 0 000 4z"></path></svg>
+
+        </button>
+        <div class="dropdown">
+          <div class="crayons-dropdown p-1 right-1 left-1 s:right-0 s:left-auto fs-base">
+            <a href="https://dev.to/shadowtime2000/comment/14el8" class="crayons-link crayons-link--block">Permalink</a>
+            <span class="comment-actions hidden" data-user-id="430316" data-action="settings-button" data-path="/shadowtime2000/comment/14el8/settings">
+            </span>
+            <span class="comment-actions hidden" data-action="hide-button" data-commentable-user-id="29240" data-user-id="430316" style="display: none; width: 100%;">
+              <a href="#" class="crayons-link crayons-link--block hide-comment" data-hide-type="hide" data-comment-id="537298">
+                Hide
+              </a>
+            </span>
+            <span class="mod-actions hidden mod-actions-comment-button" data-path="/shadowtime2000/comment/14el8/mod"></span>
+            <span class="report-abuse-link-wrapper" data-path="/report-abuse?url=https://dev.to/shadowtime2000/comment/14el8"></span>
+          </div>
+        </div>
+      </div>
+      <div class="body ">
+        <p>For protected variables you could also kind of use what was used for private variables with a function.<br>
+</p>
+
+<div class="highlight"><pre class="highlight javascript"><code><span class="kd">function</span> <span class="nx">NameGenerator</span><span class="p">(</span><span class="nx">name</span><span class="p">)</span> <span class="p">{</span>
+<span class="kd">var</span> <span class="nx">publicData</span> <span class="o">=</span> <span class="p">{</span><span class="nx">name</span><span class="p">};</span>
+<span class="kd">var</span> <span class="nx">privateData</span> <span class="o">=</span> <span class="nx">publicData</span><span class="p">;</span>
+<span class="nb">Object</span><span class="p">.</span><span class="nx">freeze</span><span class="p">(</span><span class="nx">publicData</span><span class="p">);</span>
+<span class="k">return</span> <span class="p">{...</span><span class="nx">publicData</span><span class="p">,</span> <span class="nx">john</span><span class="p">()</span> <span class="p">{</span><span class="k">return</span> <span class="nx">NameGenerator</span><span class="p">(</span><span class="dl">"</span><span class="s2">John</span><span class="dl">"</span><span class="p">)}};</span>
+<span class="p">}</span>
+</code></pre></div>
+
+
+
+<p>Though I don't have any good idea on how to actually change the values instead of creating a new object;</p>
+
+
+        <button class="reaction-button" id="button-for-comment-537298" data-comment-id="537298" title="heart">
+          <img alt="Favorite heart outline button" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/favorite-heart-outline-button-0e707584abc59ba8dfe82cacff7923.svg">
+          <img class="voted-heart" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/emoji-one-heart-f5a59d5d1b6cfe4e2c956c0ed63cd644820683dcd5c5.png" alt="Favorite heart button">
+        <span class="reactions-count" id="reactions-count-537298">1</span></button>
+      </div>
+      <div class="actions" data-comment-id="537298" data-path="/bhagatparwinder/classes-in-js-public-private-and-protected-1lok/comments/14el8">
+        <span class="current-user-actions hidden" style="display:none">
+        </span>
+          <a href="#/bhagatparwinder/classes-in-js-public-private-and-protected-1lok/comments/new/14el8" class="toggle-reply-form" rel="nofollow">Reply</a>
+      </div>
+    </div>
+  
+</div>
+
+    </details>
+
+        </div>
+      </div>
+      <div class="align-center">
+
+
+  <a href="https://dev.to/code-of-conduct" class="crayons-link crayons-link--brand">Code of Conduct</a>
+<span class="opacity-25 px-2">•</span>
+<a href="https://dev.to/report-abuse" class="crayons-link crayons-link--brand">Report abuse</a>
+
+</div>
+
+  </section>
+
+
+      </article>
+
+          <section class="crayons-card crayons-card--secondary text-padding mb-4 print-hidden">
+    <h2 class="crayons-title">Read next</h2>
+      <a href="https://dev.to/braydentw/i-open-sourced-a-portfolio-template-built-with-react-and-tailwind-1ei7" data-preload-image="" class="crayons-link mt-6 block">
+        <div class="flex items-center">
+          <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+            <img loading="lazy" alt="braydentw profile image" class="crayons-avatar__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/4aa6c2c3-59d0-45fe-a073-3b1a540b590f.webp" width="100" height="100">
+          </span>
+          <div>
+            <h3 class="fs-xl mb-0 lh-tight">I open-sourced a portfolio template built with React and Tailwind!</h3>
+            <p class="opacity-75 pt-1">
+              Brayden W - <time datetime="2020-10-16T18:58:06Z">Oct 16</time>
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="https://dev.to/umesh/linux-commands-printenv-2fop" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--TCxRgdOy--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/gaz3c5y7cgw51lvq641m.png" class="crayons-link mt-6 block">
+        <div class="flex items-center">
+          <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+            <img loading="lazy" alt="umesh profile image" class="crayons-avatar__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/fe75dae2-ca31-4999-8a10-17bb44c1b04a.webp" width="100" height="100">
+          </span>
+          <div>
+            <h3 class="fs-xl mb-0 lh-tight">Linux Commands: printenv</h3>
+            <p class="opacity-75 pt-1">
+              Umesh Yadav - <time datetime="2020-10-18T18:39:15Z">Oct 18</time>
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="https://dev.to/olenadrugalya/managing-state-with-react-context-4h2h" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--wmpqMl2M--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/2z8tqp2tvbd9q4egb6tk.jpg" class="crayons-link mt-6 block">
+        <div class="flex items-center">
+          <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+            <img loading="lazy" alt="olenadrugalya profile image" class="crayons-avatar__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/50a350f7-8199-4912-9add-bb54336cf107.webp" width="100" height="100">
+          </span>
+          <div>
+            <h3 class="fs-xl mb-0 lh-tight">Managing state with React Context </h3>
+            <p class="opacity-75 pt-1">
+              Olena Drugalya - <time datetime="2020-10-14T06:34:21Z">Oct 14</time>
+            </p>
+          </div>
+        </div>
+      </a>
+      <a href="https://dev.to/shubhamzanwar/design-patterns-facade-pattern-9pb" data-preload-image="https://res.cloudinary.com/practicaldev/image/fetch/s--pEgf7zRN--/c_imagga_scale,f_auto,fl_progressive,h_420,q_auto,w_1000/https://dev-to-uploads.s3.amazonaws.com/i/caz30kzb548qn6wr9ecp.jpg" class="crayons-link mt-6 block">
+        <div class="flex items-center">
+          <span class="crayons-avatar crayons-avatar--xl m:crayons-avatar--2xl mr-4 shrink-0">
+            <img loading="lazy" alt="shubhamzanwar profile image" class="crayons-avatar__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/b399fc8f-21ef-4908-b358-bf87f5bb3151.webp" width="100" height="100">
+          </span>
+          <div>
+            <h3 class="fs-xl mb-0 lh-tight">Design Patterns: Facade Pattern 🎭</h3>
+            <p class="opacity-75 pt-1">
+              Shubham Zanwar - <time datetime="2020-10-16T15:25:06Z">Oct 16</time>
+            </p>
+          </div>
+        </div>
+      </a>
+  </section>
+
+    </div>
+  </main>
+
+  <aside class="crayons-layout__sidebar-right" aria-label="Right sidebar navigation">
+      <div class="crayons-article-sticky grid gap-4 break-word print-hidden" id="article-show-primary-sticky-nav">
+  <div class="crayons-card crayons-card--secondary branded-7 p-4 pt-0 gap-4 grid" style="border-top-color: #545454;">
+    <div class="-mt-4">
+      <a href="https://dev.to/bhagatparwinder" class="flex">
+        <span class="crayons-avatar crayons-avatar--xl  mr-2 shrink-0">
+          <img src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/5694b04a-30a0-4dda-a00b-27ce65b44077.webp" class="crayons-avatar__image" alt="Parwinder 👨🏻‍💻 profile image">
+        </span>
+        <span class="crayons-link crayons-subtitle-2 mt-5">Parwinder 👨🏻‍💻</span>
+      </a>
+    </div>
+      <div class="color-base-70">
+        Happy, cheerful, confident. Web developer based out of Chicago :) 
+      </div>
+
+    <div>
+      <button class="crayons-btn follow-action-button w-100 showing" data-info="{&quot;id&quot;:29240,&quot;className&quot;:&quot;User&quot;,&quot;style&quot;:&quot;&quot;}" data-follow-action-button="true">Follow</button></div>
+
+      <div class="user-metadata-details">
+  <ul class="user-metadata-details-inner">
+
+        <li>
+          <div class="key">
+            Work
+          </div>
+          <div class="value">
+            Software Architect
+          </div>
+        </li>
+        <li>
+          <div class="key">
+            Location
+          </div>
+          <div class="value">
+            Chicago, IL
+          </div>
+        </li>
+    <li>
+      <div class="key">
+        Joined
+      </div>
+      <div class="value">
+        <time datetime="2017-08-09T03:52:10Z" class="date">9 de ago. de 2017</time>
+      </div>
+    </li>
+  </ul>
+</div>
+
+  </div>
+
+
+      <div class="crayons-card crayons-card--secondary">
+        <header class="crayons-card__header">
+          <h3 class="crayons-subtitle-2">
+            More from <a href="https://dev.to/bhagatparwinder">Parwinder 👨🏻‍💻</a>
+          </h3>
+        </header>
+        <div>
+            <a class="crayons-link crayons-link--contentful" href="https://dev.to/bhagatparwinder/iife-immediately-invoked-function-expressions-49c5">
+              IIFE: Immediately Invoked Function Expressions
+              <div class="crayons-link__secondary -ml-1">
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>javascript</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>codenewbie</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>beginners</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>100daysofcode</span>
+              </div>
+            </a>
+            <a class="crayons-link crayons-link--contentful" href="https://dev.to/bhagatparwinder/polymorphism-in-javascript-1960">
+              Polymorphism in JavaScript
+              <div class="crayons-link__secondary -ml-1">
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>javascript</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>beginners</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>codenewbie</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>100daysofcode</span>
+              </div>
+            </a>
+            <a class="crayons-link crayons-link--contentful" href="https://dev.to/bhagatparwinder/memoization-in-javascript-2ncl">
+              Memoization in JavaScript
+              <div class="crayons-link__secondary -ml-1">
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>javascript</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>beginners</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>codenewbie</span>
+                  <span class="crayons-tag"><span class="crayons-tag__prefix">#</span>100daysofcode</span>
+              </div>
+            </a>
+        </div>
+      </div>
+</div>
+
+  </aside>
+</div>
+
+
+<div class="mod-actions-menu"></div>
+<div id="mod-actions-menu-btn-area"></div>
+<div data-testid="flag-user-modal-container" class="flag-user-modal-container hidden"></div>
+
+<div class="fullscreen-code js-fullscreen-code"></div>
+
+  <script async="">
+    var waitingOnPodcast = setInterval(function() {
+  if (typeof initializePodcastPlayback !== 'undefined') {
+    initializePodcastPlayback();
+    clearInterval(waitingOnPodcast);
+  }
+}, 1);
+
+    if (document.head.querySelector('meta[name="user-signed-in"][content="true"]')) {
+  function displayPollResults(json) {
+    var totalVotes = json.voting_data.votes_count;
+    json.voting_data.votes_distribution.forEach(function(point) {
+      var pollOptionItem = document.getElementById('poll_option_list_item_'+point[0]);
+      var optionText = document.getElementById('poll_option_label_'+point[0]).textContent;
+      if (json.user_vote_poll_option_id === point[0]) {
+        var votedClass = 'optionvotedfor'
+      } else {
+        var votedClass = 'optionnotvotedfor'
+      }
+      if (totalVotes === 0) {
+        var percent = 0;
+      } else {
+        var percent = (point[1]/totalVotes)*100;
+      }
+      var roundedPercent = Math.round( percent * 10 ) / 10
+      var percentFromRight = (100-roundedPercent)
+      var html = '<span><span class="ltag-votepercent ltag-'+votedClass+'" style="right:'+percentFromRight+'%"></span>        <span class="ltag-votepercenttext">'+optionText+' — '+roundedPercent+'%</span></span>';
+      pollOptionItem.innerHTML = html;
+      pollOptionItem.classList.add('already-voted')
+      document.getElementById('showmethemoney-'+json.poll_id).innerHTML = '<span class="ltag-voting-results-count">'+totalVotes+' total votes</span>';
+    })
+  }
+
+  var polls = document.getElementsByClassName('ltag-poll');
+  for (var i = 0; i < polls.length; i += 1) {
+    var poll = polls[i]
+    var pollId = poll.dataset.pollId
+    window.fetch('/poll_votes/'+pollId)
+    .then(function(response){
+      response.json().then(
+        function(json) {
+          if (json.voted) {
+            displayPollResults(json)
+          } else {
+            var els = document.getElementById('poll_'+json.poll_id).getElementsByClassName('ltag-polloption');
+
+            for (i = 0; i < els.length; i += 1) {
+              els[i].addEventListener('click', function(e) {
+                var tokenMeta = document.querySelector("meta[name='csrf-token']")
+                if (!tokenMeta) {
+                  alert('Whoops. There was an error. Your vote was not counted. Try refreshing the page.')
+                  return
+                }
+                var csrfToken = tokenMeta.getAttribute('content')
+                var optionId = e.target.dataset.optionId
+                window.fetch('/poll_votes', {
+                  method: 'POST',
+                  headers: {
+                    'X-CSRF-Token': csrfToken,
+                    'Content-Type': 'application/json',
+                  },
+                  body: JSON.stringify({poll_vote: { poll_option_id: optionId } }),
+                  credentials: 'same-origin',
+                }).then(function(response){
+                  response.json().then(function(j){displayPollResults(j)})
+                })
+              });
+            }
+
+            document.getElementById('showmethemoney-'+json.poll_id).addEventListener('click', function() {
+              pollId = this.dataset.pollId
+              window.fetch('/poll_skips', {
+                method: 'POST',
+                headers: {
+                  'X-CSRF-Token': csrfToken,
+                  'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({poll_skip: {poll_id: pollId }}),
+                credentials: 'same-origin',
+              }).then(function(response){
+                response.json().then(function(j){displayPollResults(j)})
+              })
+            });
+          }
+        }
+      )
+    })
+  }
+} else {
+    var els = document.getElementsByClassName('ltag-poll')
+    for (i = 0; i < els.length; i += 1) {
+      els[i].onclick = function(e) {
+        if (typeof showModal !== "undefined") {
+          showModal('poll');
+        }
+      }
+    }
+}
+
+    function activateRunkitTags() {
+  if (!areAnyRunkitTagsPresent())
+    return
+
+  var checkRunkit = setInterval(function() {
+    try {
+      dynamicallyLoadRunkitLibrary()
+
+      if (typeof(RunKit) === 'undefined') {
+        return
+      }
+
+      replaceTagContentsWithRunkitWidget()
+      clearInterval(checkRunkit);
+    } catch(e) {
+      console.error(e);
+      clearInterval(checkRunkit);
+    }
+  }, 200);
+}
+
+function isRunkitTagAlreadyActive(runkitTag) {
+  return runkitTag.querySelector("iframe") !== null;
+};
+
+function areAnyRunkitTagsPresent() {
+  var presentRunkitTags = document.getElementsByClassName("runkit-element");
+
+  return presentRunkitTags.length > 0
+}
+
+function replaceTagContentsWithRunkitWidget() {
+  var targets = document.getElementsByClassName("runkit-element");
+  for (var i = 0; i < targets.length; i++) {
+    if (isRunkitTagAlreadyActive(targets[i])) {
+      continue;
+    }
+
+    var wrapperContent = targets[i].textContent;
+    if (/^(<iframe src)/.test(wrapperContent) === false) {
+      if (targets[i].children.length > 0) {
+        var preamble = targets[i].children[0].textContent;
+        var content = targets[i].children[1].textContent;
+        targets[i].innerHTML = "";
+        var notebook = RunKit.createNotebook({
+          element: targets[i],
+          source: content,
+          preamble: preamble
+        });
+      }
+    }
+  }
+};
+
+function dynamicallyLoadRunkitLibrary() {
+  if (typeof(dynamicallyLoadScript) === "undefined")
+    return
+
+  dynamicallyLoadScript("//embed.runkit.com")
+}
+
+activateRunkitTags();
+
+    var videoPreviews = document.getElementsByClassName("ltag__twitter-tweet__media__video-wrapper");
+[].forEach.call(videoPreviews, function(el) {
+  el.onclick = function(e) {
+    var divHeight = el.offsetHeight;
+    el.style.maxHeight = divHeight + "px";
+    el.getElementsByClassName("ltag__twitter-tweet__media--video-preview")[0].style.display = "none";
+    el.getElementsByClassName("ltag__twitter-tweet__video")[0].style.display = "block";
+    el.getElementsByTagName("video")[0].play();
+  }
+});
+var tweets = document.getElementsByClassName("ltag__twitter-tweet__main");
+[].forEach.call(tweets, function(tweet){
+  tweet.onclick = function(e) {
+    if (e.target.nodeName == "A" || e.target.parentElement.nodeName == "A") {
+      return;
+    }
+    window.open(tweet.dataset.url,"_blank");
+  }
+});
+
+    function isUserSignedIn() {
+  return document.head.querySelector('meta[name="user-signed-in"][content="true"]') !== null;
+}
+
+// Hiding/showing elements
+// ***************************************
+function clearSubscriptionArea() {
+  const subscriptionSignedIn = document.getElementById('subscription-signed-in');
+  if (subscriptionSignedIn) {
+    subscriptionSignedIn.classList.add("hidden");
+  }
+
+  const subscriptionSignedOut = document.getElementById('subscription-signed-out');
+  if (subscriptionSignedOut) {
+    subscriptionSignedOut.classList.add("hidden");
+  }
+
+  const responseMessage = document.getElementById('response-message');
+  if (responseMessage) {
+    responseMessage.classList.add("hidden");
+  }
+
+  const subscriberAppleAuth = document.getElementById('subscriber-apple-auth');
+  if (subscriberAppleAuth) {
+    subscriberAppleAuth.classList.add("hidden");
+  }
+
+  hideConfirmationModal();
+}
+
+function showSignedIn() {
+  clearSubscriptionArea();
+  const subscriptionSignedIn = document.getElementById('subscription-signed-in');
+  if (subscriptionSignedIn) {
+    subscriptionSignedIn.classList.remove("hidden");
+  }
+
+  const profileImages = document.getElementById('profile-images');
+  if (profileImages) {
+    profileImages.classList.remove("signed-out");
+    profileImages.classList.add("signed-in");
+  }
+}
+
+function showSignedOut() {
+  clearSubscriptionArea();
+
+  const subscriptionSignedOut = document.getElementById('subscription-signed-out');
+  if (subscriptionSignedOut) {
+    subscriptionSignedOut.classList.remove("hidden");
+  }
+
+  const profileImages = document.getElementById('profile-images');
+  if (profileImages) {
+    profileImages.classList.remove("signed-in");
+    profileImages.classList.add("signed-out");
+  }
+
+  const subscriberProfileImage = document.querySelector('.ltag__user-subscription-tag__subscriber-profile-image');
+  if (subscriberProfileImage) {
+    subscriberProfileImage.classList.add("hidden");
+  }
+}
+
+function showResponseMessage(noticeType, msg) {
+  clearSubscriptionArea();
+  const responseMessage = document.getElementById('response-message');
+  if (responseMessage) {
+    responseMessage.classList.remove("hidden");
+    responseMessage.classList.add(`crayons-notice--${noticeType}`);
+    responseMessage.textContent = msg;
+  }
+}
+
+function showAppleAuthMessage() {
+  clearSubscriptionArea();
+  const subscriber = userData();
+  if (subscriber) {
+    updateProfileImages('.ltag__user-subscription-tag__subscriber-profile-image', subscriber);
+  }
+
+  const subscriberAppleAuth = document.getElementById('subscriber-apple-auth');
+  if (subscriberAppleAuth) {
+    subscriberAppleAuth.classList.remove("hidden");
+  }
+}
+
+function showSubscribed() {
+  updateSubscriberData();
+  const authorUsername = document.getElementById('user-subscription-tag')?.dataset.authorUsername;
+  const alreadySubscribedMsg = `You are already subscribed.`;
+  showResponseMessage('success', alreadySubscribedMsg);
+}
+
+function showConfirmationModal() {
+  const confirmationModal = document.getElementById('user-subscription-confirmation-modal');
+  if (confirmationModal) {
+    confirmationModal.classList.remove("hidden");
+  }
+}
+
+function hideConfirmationModal() {
+  const confirmationModal = document.getElementById('user-subscription-confirmation-modal');
+  if (confirmationModal) {
+    confirmationModal.classList.add("hidden");
+  }
+}
+
+// Updating DOM elements
+// ***************************************
+function updateSubscriberData() {
+  const subscriber = userData();
+  if (subscriber.email) {
+    updateElementsTextContent('.ltag__user-subscription-tag__subscriber-email', subscriber.email);
+  }
+
+  updateProfileImages('.ltag__user-subscription-tag__subscriber-profile-image', subscriber);
+}
+
+function updateElementsTextContent(identifier, value) {
+  const elements = document.querySelectorAll(identifier);
+
+  elements.forEach(function(element) {
+    element.textContent = value;
+  });
+}
+
+function updateProfileImages(identifier, subscriber) {
+  const profileImages = document.querySelectorAll(`img${identifier}`);
+
+  profileImages.forEach(function(profileImage) {
+    profileImage.src = subscriber.profile_image_90;
+    profileImage.alt = `${subscriber.username} profile image`;
+  });
+}
+
+// Adding event listeners for 'click'
+// ***************************************
+function addSignInClickHandler() {
+  const signInBtn = document.getElementById('sign-in-btn');
+  if (signInBtn) {
+    signInBtn.addEventListener('click', function(e) {
+      if (typeof showModal !== 'undefined') {
+        showModal('user_subscription');
+      }
+    });
+  }
+}
+
+function addConfirmationModalClickHandlers() {
+  const subscribeBtn = document.getElementById('subscribe-btn');
+  if (subscribeBtn) {
+    subscribeBtn.addEventListener('click', function(e) {
+      showConfirmationModal();
+    });
+  }
+
+  const cancelBtn = document.getElementById('cancel-btn');
+  if (cancelBtn) {
+    cancelBtn.addEventListener('click', function(e) {
+      hideConfirmationModal();
+    });
+  }
+
+  const closeConfirmationModal = document.getElementById('close-confirmation-modal');
+  if (closeConfirmationModal) {
+    closeConfirmationModal.addEventListener('click', function(e) {
+      hideConfirmationModal();
+    });
+  }
+
+  const confirmationModal = document.getElementById('confirmation-btn')
+  if (confirmationModal) {
+    confirmationModal.addEventListener('click', function(e) {
+      handleSubscription();
+    });
+  }
+}
+
+// API calls
+// ***************************************
+function submitSubscription() {
+  const headers = {
+    Accept: 'application/json',
+    'X-CSRF-Token': window.csrfToken,
+    'Content-Type': 'application/json',
+  }
+
+  const articleBody = document.getElementById('article-body');
+  const articleId = (articleBody ? articleBody.dataset.articleId : null);
+
+  const subscriber = userData();
+  const body = JSON.stringify(
+      {
+        user_subscription: {
+          source_type: 'Article',
+          source_id: articleId,
+          subscriber_email: subscriber.email
+        }
+      }
+    )
+
+  return fetch('/user_subscriptions', {
+    method: 'POST',
+    headers: headers,
+    credentials: 'same-origin',
+    body: body,
+  }).then(function(response) {
+    return response.json();
+  });
+}
+
+function fetchIsSubscribed() {
+  const articleBody = document.getElementById('article-body');
+  const articleId = (articleBody ? articleBody.dataset.articleId : null);
+
+  const params = new URLSearchParams({
+    source_type: 'Article',
+    source_id: articleId
+  }).toString();
+
+  const headers = {
+    Accept: 'application/json',
+    'X-CSRF-Token': window.csrfToken,
+    'Content-Type': 'application/json',
+  }
+
+  return fetch(`/user_subscriptions/subscribed?${params}`, {
+    method: 'GET',
+    headers: headers,
+    credentials: 'same-origin',
+  }).then(function(response) {
+    if (response.ok) {
+      return response.json();
+    } else {
+      console.error(`Base data error: ${response.status} - ${response.statusText}`);
+    }
+  });
+}
+
+// Handle API responses
+// ***************************************
+function handleSubscription() {
+  submitSubscription().then(function(response) {
+    if (response.success) {
+      const userSubscriptionTag = document.getElementById('user-subscription-tag');
+      const authorUsername = (userSubscriptionTag ? userSubscriptionTag.dataset.authorUsername : null);
+      const successMsg = `You are now subscribed and may receive emails from ${authorUsername}`;
+      showResponseMessage('success', successMsg);
+    } else {
+      showResponseMessage('danger', response.error);
+    }
+  });
+}
+
+function checkIfSubscribed() {
+  fetchIsSubscribed().then(function(response) {
+    const subscriber = userData();
+    const isSubscriberAuthedWithApple = (subscriber.email ? subscriber.email.endsWith('@privaterelay.appleid.com') : false);
+
+    if (response.is_subscribed) {
+      showSubscribed();
+    } else if (isSubscriberAuthedWithApple) {
+      showAppleAuthMessage();
+    } else {
+      updateSubscriberData();
+    }
+  });
+}
+
+// We load this JS on every Article. This is to only run it on Articles
+// where the UserSubscription liquid tag is present
+if (document.getElementById('user-subscription-tag')) {
+  // The markup defaults to signed out UX
+  if (isUserSignedIn()) {
+    showSignedIn();
+    addConfirmationModalClickHandlers();
+
+    // We need access to some DOM elements (i.e. csrf token, article id, userData, etc.)
+    document.addEventListener('DOMContentLoaded', function() {
+      checkIfSubscribed();
+    });
+  } else {
+    showSignedOut();
+    addSignInClickHandler();
+  }
+}
+
+  </script>
+  <script async="" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/widgets.js" charset="utf-8"></script>
+
+
+  </div>
+</div>
+<!-- Start Bottom Shell -->
+
+<!-- Start Bottom Shell -->
+    <footer class="crayons-footer print-hidden">
+  <div id="footer-container" class="crayons-layout crayons-footer__container">
+    <div class="crayons-footer__info">
+      <div><a href="https://dev.to/" class="site-logo" aria-label="DEV Home">
+    <svg width="50" height="40" viewBox="0 0 50 40" fill="none" xmlns="http://www.w3.org/2000/svg"><rect width="50" height="40" rx="3" style="fill: currentColor;"></rect><path d="M19.099 23.508c0 1.31-.423 2.388-1.27 3.234-.838.839-1.942 1.258-3.312 1.258h-4.403V12.277h4.492c1.31 0 2.385.423 3.224 1.27.846.838 1.269 1.912 1.269 3.223v6.738zm-2.808 0V16.77c0-.562-.187-.981-.562-1.258-.374-.285-.748-.427-1.122-.427h-1.685v10.107h1.684c.375 0 .75-.138 1.123-.415.375-.285.562-.708.562-1.27zM28.185 28h-5.896c-.562 0-1.03-.187-1.404-.561-.375-.375-.562-.843-.562-1.404V14.243c0-.562.187-1.03.562-1.404.374-.375.842-.562 1.404-.562h5.896v2.808H23.13v3.65h3.088v2.808h-3.088v3.65h5.054V28zm7.12 0c-.936 0-1.684-.655-2.246-1.965l-3.65-13.758h3.089l2.807 10.804 2.808-10.804H41.2l-3.65 13.758C36.99 27.345 36.241 28 35.305 28z" style="fill: var(--base-inverted);"></path></svg>
+</a>
+</div>
+      <p>A constructive and inclusive social network. Open source and radically transparent.</p>
+      <div>  <a href="https://twitter.com/thepracticaldev" target="_blank" class="crayons-link crayons-link--secondary mx-2" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="adij7x7278vgrm1zgz3i9jku3lu5hexo" class="crayons-icon"><title id="adij7x7278vgrm1zgz3i9jku3lu5hexo">Twitter</title>
+    <path d="M22.162 5.656a8.383 8.383 0 01-2.402.658A4.196 4.196 0 0021.6 4c-.82.488-1.719.83-2.656 1.015a4.182 4.182 0 00-7.126 3.814 11.874 11.874 0 01-8.62-4.37 4.168 4.168 0 00-.566 2.103c0 1.45.738 2.731 1.86 3.481a4.168 4.168 0 01-1.894-.523v.052a4.185 4.185 0 003.355 4.101 4.211 4.211 0 01-1.89.072A4.185 4.185 0 007.97 16.65a8.395 8.395 0 01-6.191 1.732 11.83 11.83 0 006.41 1.88c7.693 0 11.9-6.373 11.9-11.9 0-.18-.005-.362-.013-.54a8.495 8.495 0 002.087-2.165l-.001-.001z" fill="#65bbf2"></path>
+</svg>
+
+  </a>
+  <a href="https://facebook.com/thepracticaldev" target="_blank" class="crayons-link crayons-link--secondary mx-2" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="ao9zqc1wo1fr7nu9oqnpe378dv1j73sz" class="crayons-icon"><title id="ao9zqc1wo1fr7nu9oqnpe378dv1j73sz">Facebook</title>
+    <path d="M15.402 21v-6.966h2.333l.349-2.708h-2.682V9.598c0-.784.218-1.319 1.342-1.319h1.434V5.857a19.188 19.188 0 00-2.09-.107c-2.067 0-3.482 1.262-3.482 3.58v1.996h-2.338v2.708h2.338V21H4a1 1 0 01-1-1V4a1 1 0 011-1h16a1 1 0 011 1v16a1 1 0 01-1 1h-4.598z"></path>
+</svg>
+
+  </a>
+  <a href="https://github.com/thepracticaldev" target="_blank" class="crayons-link crayons-link--secondary mx-2" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="a5d49znjd3cc8dsb5p7128lqcpibsvyr" class="crayons-icon"><title id="a5d49znjd3cc8dsb5p7128lqcpibsvyr">Github</title>
+    <path d="M12 2C6.475 2 2 6.475 2 12a9.994 9.994 0 006.838 9.488c.5.087.687-.213.687-.476 0-.237-.013-1.024-.013-1.862-2.512.463-3.162-.612-3.362-1.175-.113-.288-.6-1.175-1.025-1.413-.35-.187-.85-.65-.013-.662.788-.013 1.35.725 1.538 1.025.9 1.512 2.338 1.087 2.912.825.088-.65.35-1.087.638-1.337-2.225-.25-4.55-1.113-4.55-4.938 0-1.088.387-1.987 1.025-2.688-.1-.25-.45-1.275.1-2.65 0 0 .837-.262 2.75 1.026a9.28 9.28 0 012.5-.338c.85 0 1.7.112 2.5.337 1.912-1.3 2.75-1.024 2.75-1.024.55 1.375.2 2.4.1 2.65.637.7 1.025 1.587 1.025 2.687 0 3.838-2.337 4.688-4.562 4.938.362.312.675.912.675 1.85 0 1.337-.013 2.412-.013 2.75 0 .262.188.574.688.474A10.016 10.016 0 0022 12c0-5.525-4.475-10-10-10z"></path>
+</svg>
+
+  </a>
+  <a href="https://instagram.com/thepracticaldev" target="_blank" class="crayons-link crayons-link--secondary mx-2" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="a7qb4mvpwnhxt8r8iux7u1kg8xrbzmvm" class="crayons-icon"><title id="a7qb4mvpwnhxt8r8iux7u1kg8xrbzmvm">Instagram</title>
+    <path d="M12 2c2.717 0 3.056.01 4.122.06 1.065.05 1.79.217 2.428.465.66.254 1.216.598 1.772 1.153.509.5.902 1.105 1.153 1.772.247.637.415 1.363.465 2.428.047 1.066.06 1.405.06 4.122 0 2.717-.01 3.056-.06 4.122-.05 1.065-.218 1.79-.465 2.428a4.883 4.883 0 01-1.153 1.772c-.5.508-1.105.902-1.772 1.153-.637.247-1.363.415-2.428.465-1.066.047-1.405.06-4.122.06-2.717 0-3.056-.01-4.122-.06-1.065-.05-1.79-.218-2.428-.465a4.89 4.89 0 01-1.772-1.153 4.904 4.904 0 01-1.153-1.772c-.248-.637-.415-1.363-.465-2.428C2.013 15.056 2 14.717 2 12c0-2.717.01-3.056.06-4.122.05-1.066.217-1.79.465-2.428a4.88 4.88 0 011.153-1.772A4.897 4.897 0 015.45 2.525c.638-.248 1.362-.415 2.428-.465C8.944 2.013 9.283 2 12 2zm0 5a5 5 0 100 10 5 5 0 000-10zm6.5-.25a1.25 1.25 0 10-2.5 0 1.25 1.25 0 002.5 0zM12 9a3 3 0 110 6 3 3 0 010-6z"></path>
+</svg>
+
+  </a>
+  <a href="https://twitch.com/thepracticaldev" target="_blank" class="crayons-link crayons-link--secondary mx-2" rel="noopener">
+    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" role="img" aria-labelledby="adb9ux0lqhk68yo8lmgeu1sfiqnezttv" class="crayons-icon"><title id="adb9ux0lqhk68yo8lmgeu1sfiqnezttv">Twitch</title>
+    <path d="M4.3 3H21v11.7l-4.7 4.7h-3.9l-2.5 2.4H7v-2.4H3V6.2L4.3 3zM5 17.4h4v2.4h.095l2.5-2.4h3.877L19 13.872V5H5v12.4zM15 8h2v4.7h-2V8zm0 0h2v4.7h-2V8zm-5 0h2v4.7h-2V8z"></path>
+</svg>
+
+  </a>
+</div>
+      <p class="fs-xs color-base-60">DEV Community copyright 2016 - 2020</p>
+      <p class="fs-xs color-base-60">Built on <a href="https://www.forem.com/">Forem</a> — the <a href="https://dev.to/t/opensource">open source</a> software that powers <a href="https://dev.to/">DEV</a> and other inclusive communities.</p>
+      <p class="fs-xs color-base-60">Made with love and <a href="https://dev.to/t/rails">Ruby on Rails</a>.</p>
+    </div>
+
+    <nav class="crayons-footer__nav">
+        <a href="https://dev.to/" class="crayons-link crayons-link--block">Home</a>
+            <a href="https://dev.to/listings" class="crayons-link crayons-link--block">
+              Listings
+            </a>
+            <a href="https://dev.to/pod" class="crayons-link crayons-link--block">
+              Podcasts
+            </a>
+            <a href="https://dev.to/videos" class="crayons-link crayons-link--block">
+              Videos
+            </a>
+            <a href="https://dev.to/tags" class="crayons-link crayons-link--block">
+              Tags
+            </a>
+            <a href="https://dev.to/code-of-conduct" class="crayons-link crayons-link--block">
+              Code of Conduct
+            </a>
+            <a href="https://dev.to/faq" class="crayons-link crayons-link--block">
+              FAQ
+            </a>
+            <a href="https://shop.dev.to/" class="crayons-link crayons-link--block">
+              DEV Shop
+            </a>
+            <a href="https://dev.to/sponsors" class="crayons-link crayons-link--block">
+              Sponsors
+            </a>
+            <a href="https://dev.to/about" class="crayons-link crayons-link--block">
+              About
+            </a>
+            <a href="https://dev.to/privacy" class="crayons-link crayons-link--block">
+              Privacy Policy
+            </a>
+            <a href="https://dev.to/terms" class="crayons-link crayons-link--block">
+              Terms of use
+            </a>
+            <a href="https://dev.to/contact" class="crayons-link crayons-link--block">
+              Contact
+            </a>
+          <a href="https://dev.to/enter" class="crayons-link crayons-link--block fw-bold">
+            Sign In/Up
+          </a>
+    </nav>
+
+      <img class="crayons-footer__mascot" alt="Sloan, the sloth mascot" loading="lazy" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/wmv3mtusjwb3r13d5h2f.webp" width="52" height="120">
+  </div>
+</footer>
+<div id="snack-zone"><div class="hidden"></div></div>
+
+    <div id="global-signup-modal" class="authentication-modal crayons-modal crayons-modal--s fixed hidden">
+  <div class="authentication-modal__box crayons-modal__box">
+    <button type="button" class="authentication-modal__close-btn close-modal-button crayons-btn crayons-btn--icon crayons-btn--ghost">
+      <svg width="24" height="24" viewBox="0 0 24 24" class="crayons-icon" xmlns="http://www.w3.org/2000/svg">
+        <path d="M12 10.586l4.95-4.95 1.414 1.414-4.95 4.95 4.95 4.95-1.414 1.414-4.95-4.95-4.95 4.95-1.414-1.414 4.95-4.95-4.95-4.95L7.05 5.636l4.95 4.95z"></path>
+      </svg>
+    </button>
+    <div class="crayons-modal__box__body p-0">
+      <div class="authentication-modal__container">
+        <figure class="authentication-modal__image-container">
+          <img class="authentication-modal__image" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/rainbowdev.webp" alt="Secondary DEV logo">
+        </figure>
+        <div class="authentication-modal__content">
+          <h1 class="authentication-modal__title">
+            Log in to continue
+          </h1>
+          <p class="authentication-modal__description">
+              We're a place where coders share, stay up-to-date and grow their careers.
+          </p>
+        </div>
+      </div>
+
+      <div class="authentication-modal__actions">
+        <a href="https://dev.to/enter" class="crayons-btn" aria-label="Log in" data-no-instant="">
+          Log in
+        </a>
+        <a href="https://dev.to/enter?state=new-user" class="crayons-btn crayons-btn--ghost-brand" aria-label="Create new account" data-no-instant="">
+          Create new account
+        </a>
+      </div>
+      <footer class="authentication-modal__footer">
+        <p class="authentication-modal__footer-label">
+          We strive for transparency and don't collect excess data.
+        </p>
+      </footer>
+    </div>
+  </div>
+  <div class="crayons-modal__overlay"></div>
+</div>
+
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/runtimesignupModalShortcuts-07818c40f48ebcd18b6e.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/vendor-8a8dc187209d74194878.js" defer="defer"></script>
+<script src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/signupModalShortcuts-618d9ff83cddfabb4825.js" defer="defer"></script>
+
+  <div id="live-article-indicator" class="live-article-indicator"></div>
+  <img class="icon-img" style="display:none" alt="twitter logo" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/twitter-logo-7693bfa09ce3f28fea334a5dcf36ddf1c8d58b01bbfd78c.svg">
+  <img class="icon-img" style="display:none" alt="github logo" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/github-logo-ba8488d21cd8ee1fee097b8410db9deaa41d0ca30b004c0c.svg">
+    <script defer="defer">
+      if (!document.title) {
+        document.title = document.getElementsByTagName("TITLE")[1].textContent
+      }
+    </script>
+  
+  
+<iframe scrolling="no" allowtransparency="true" src="Classes%20in%20JS%20Public,%20Private%20and%20Protected%20-%20DEV_arquivos/widget_iframe.html" title="Twitter settings iframe" style="display: none;" frameborder="0"></iframe><iframe id="rufous-sandbox" scrolling="no" allowtransparency="true" allowfullscreen="true" style="position: absolute; visibility: hidden; display: none; width: 0px; height: 0px; padding: 0px; border: medium none;" title="Twitter analytics iframe" frameborder="0"></iframe></body></html>
