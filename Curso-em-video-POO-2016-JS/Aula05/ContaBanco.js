@@ -80,7 +80,7 @@ export default class ContaBanco {
     }
     sacar(v) {
         if (this.getStatus() === true) {
-            if (this.getSaldo() > v) {
+            if (this.getSaldo() >= v) {
                 this.setSaldo(this.getSaldo() - v)
             } else {
                 console.log("Erro! Saldo insuficiente para saque.")
