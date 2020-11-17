@@ -16,7 +16,7 @@ class interfacePublicacao {
     fechar() {
         proibidoChamarMetodo()
     }
-    folhear() {
+    folhear(pagina) {
         proibidoChamarMetodo()
     }
     avancarPag() {

@@ -3,9 +3,9 @@ class Pessoa {
     #idade
     #sexo
     constructor(nome, idade, sexo) {
-        this.#nome = nome
-        this.#idade = idade
-        this.#sexo = sexo
+        this.setNome(nome)
+        this.setIdade(idade)
+        this.setSexo(sexo)
     }
 
     getNome() {
