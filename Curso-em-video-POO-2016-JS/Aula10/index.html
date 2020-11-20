@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 10 - POO</title>
+    <script src="Pessoa.js"></script>
+    <script src="Aluno.js"></script>
+    <script src="Professor.js"></script>
+    <script src="Funcionario.js"></script>
+</head>
+<body>
+    <div id="App"></div>
+
+    <script>
+        p1 = new Pessoa()
+        p2 = new Aluno()
+        p3 = new Professor()
+        p4 = new Funcionario()
+
+        p1.setNome("Pedro")
+        p2.setNome("Maria")
+        p3.setNome("Claudio")
+        p4.setNome("Fabiana")
+
+        p1.setSexo("Masculino")
+        p4.setSexo("Feminino")
+
+        p2.setCurso("Informática")
+        p3.setSalario(2500.75)
+        p4.setSetor("Estoque")
+        
+        p2.cancelarMatr()
+        p3.receberAum(550.20)
+        p4.mudarTrabalho()
+
+        // console.table(p1)
+        // console.table(p2)
+        // console.table(p3)
+        //console.table(p4)
+
+        let divApp = window.document.getElementById("App")
+        divApp.innerHTML += "<h1>Escola</h1>"
+        divApp.innerHTML += "<h2>Pessoa</h2>"
+        divApp.innerHTML += `<p>Nome: ${p1.getNome()}; Idade: ${p1.getIdade()}; Sexo: ${p1.getSexo()}</p>`
+        divApp.innerHTML += "<h2>Aluno</h2>"
+        divApp.innerHTML += `<p>Nome: ${p2.getNome()}; Idade: ${p2.getIdade()}; Sexo: ${p2.getSexo()}</p>`
+        divApp.innerHTML += `<p>Matrícula: ${p2.getMatr()}; Curso: ${p2.getCurso()}</p>`
+        divApp.innerHTML += "<h2>Professor</h2>"
+        divApp.innerHTML += `<p>Nome: ${p3.getNome()}; Idade: ${p3.getIdade()}; Sexo: ${p3.getSexo()}</p>`
+        divApp.innerHTML += `<p>Especialidade: ${p3.getEspecialidade()}; Salário: ${p3.getSalario()}</p>`
+        divApp.innerHTML += "<h2>Funcionário</h2>"
+        divApp.innerHTML += `<p>Nome: ${p4.getNome()}; Idade: ${p4.getIdade()}; Sexo: ${p4.getSexo()}</p>`
+        divApp.innerHTML += `<p>Setor: ${p4.getSetor()}; Trabalhando: ${p4.getTrabalhando()}</p>`
+
+    </script>
+</body>
+</html>
