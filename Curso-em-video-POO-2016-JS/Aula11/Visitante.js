@@ -1,0 +1,3 @@
+class Visitante extends Pessoa {
+    
+}
