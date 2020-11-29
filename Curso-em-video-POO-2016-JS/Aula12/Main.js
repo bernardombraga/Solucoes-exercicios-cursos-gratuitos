@@ -4,6 +4,13 @@ import { Reptil } from './Reptil.js'
 import { Peixe } from './Peixe.js'
 import { Ave } from './Ave.js'
 
+import { Canguru } from './Canguru.js'
+import { Cachorro } from './Cachorro.js'
+import { Cobra} from './Cobra.js'
+import { Tartaruga} from './Tartaruga.js'
+import { Goldfish } from './Goldfish.js'
+import { Arara } from './Arara.js'
+
 let divApp = window.document.getElementById("App")
 divApp.innerHTML += "<h1>Animais</h1>"
 
@@ -57,3 +64,40 @@ divApp.innerHTML += `<p>Cor da pena: ${a.getCorPena()}</p>`
 a.locomover()
 a.alimentar()
 a.emitirSom()
+
+divApp.innerHTML += "<h3>Canguru</h3>"
+let c1 = new Canguru()
+c1.usarBolsa()
+c1.locomover()
+c1.emitirSom()
+
+divApp.innerHTML += "<h3>Cachorro</h3>"
+let c2 = new Cachorro()
+c2.abanarRabo()
+c2.enterrarOsso()
+c2.emitirSom()
+
+divApp.innerHTML += "<h3>Cobra</h3>"
+let c3 = new Cobra()
+c3.locomover()
+c3.alimentar()
+c3.emitirSom()
+
+divApp.innerHTML += "<h3>Tartaruga</h3>"
+let t = new Tartaruga()
+t.locomover()
+t.alimentar()
+t.emitirSom()
+
+divApp.innerHTML += "<h3>Goldfish</h3>"
+let g = new Goldfish()
+g.locomover()
+g.alimentar()
+g.emitirSom()
+g.soltarBolha()
+
+divApp.innerHTML += "<h3>Arara</h3>"
+let ar = new Arara()
+ar.locomover()
+ar.alimentar()
+ar.emitirSom()
